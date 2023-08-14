@@ -1,11 +1,13 @@
 from typing import List
+from datetime import datetime
 
 
 class Task():
 
     def __init__(self, name, repeats_seconds: int = 0) -> None:
-        # note: _instances should be sorted by date completed
-        self._instances = []
+        self._created = datetime.now()
+        self._instances = []  # note: _instances should be sorted by date completed
+
         self.name = name
         self._repeats_seconds = repeats_seconds
 
@@ -15,8 +17,8 @@ class Task():
     def __repr__(self) -> str:
         return str(self)
 
-    def add_instance(self, due: int) -> None:
-        t = TaskInstance(due, self)
+    def add_instance(self, due: datetime) -> None:
+        t = TaskInstance(self, due)
         self._instances.append(t)
 
     def instances(self) -> List['TaskInstance']:
@@ -30,7 +32,9 @@ class TaskInstance():
 
     _task = None
 
-    def __init__(self, due: int, task: Task) -> None:
+    def __init__(self, task: Task, due: datetime) -> None:
+        self._created = datetime.now()
+
         self._due = due
         self._task = task
 
@@ -70,12 +74,13 @@ class Tasks():
 
 if __name__ == "__main__":
     a = Task("beep")
-    a.add_instance(1)
+    a.add_instance(datetime(2023, 1, 1))
 
     b = Task("boop")
 
     brush_teeth_task = Task('brush teeth', 28800)
-    brush_teeth_task.add_instance(2)
+    brush_teeth_task.add_instance(datetime(2023, 1, 2, 12))
+    brush_teeth_task.add_instance(datetime(2023, 1, 3, 12, 30, 10))
 
     tasks = Tasks()
     tasks.add_task(a)
