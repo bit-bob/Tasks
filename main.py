@@ -54,7 +54,7 @@ class Tasks():
 
         if self._tasks:
 
-            rv += "Tasks:\n"
+            rv += "Tasks:"
 
             for task in self._tasks:
 
@@ -86,4 +86,5 @@ if __name__ == "__main__":
     print(a)
     print(b)
     print(brush_teeth_task)
+
     print(tasks)
