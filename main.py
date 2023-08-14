@@ -3,10 +3,9 @@ from typing import List
 
 class Task():
 
-    # should be sorted by date completed
-    _instances = []
-
     def __init__(self, name, repeats_seconds: int = 0) -> None:
+        # note: _instances should be sorted by date completed
+        self._instances = []
         self.name = name
         self._repeats_seconds = repeats_seconds
 
