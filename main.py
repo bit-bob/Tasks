@@ -56,7 +56,6 @@ class Tasks():
 
             rv += "Tasks:\n"
 
-            task_instances = [t.instances() for t in self._tasks]
             for task in self._tasks:
 
                 rv += f"\n - {task}"
