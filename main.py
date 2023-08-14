@@ -1,5 +1,6 @@
 from typing import List
 from datetime import datetime
+from bisect import insort
 
 
 class Task():
@@ -19,7 +20,7 @@ class Task():
 
     def add_instance(self, due: datetime) -> None:
         t = TaskInstance(self, due)
-        self._instances.append(t)
+        insort(self._instances, t)
 
     def instances(self) -> List['TaskInstance']:
         return self._instances
@@ -43,6 +44,9 @@ class TaskInstance():
 
     def __repr__(self) -> str:
         return str(self)
+
+    def __lt__(self, other):
+        return self._due < other._due
 
 
 class Tasks():
@@ -81,6 +85,7 @@ if __name__ == "__main__":
     brush_teeth_task = Task('brush teeth', 28800)
     brush_teeth_task.add_instance(datetime(2023, 1, 2, 12))
     brush_teeth_task.add_instance(datetime(2023, 1, 3, 12, 30, 10))
+    brush_teeth_task.add_instance(datetime(2023, 1, 1))
 
     tasks = Tasks()
     tasks.add_task(a)
