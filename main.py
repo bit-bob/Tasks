@@ -1,11 +1,11 @@
+import uvicorn
+from tasks import Task
 
-class Task():
 
-    def __init__(
-        self,
-        name,
-    ) -> None:
-        self.name = name
+tasks = [Task('test')]
 
-    def __str__(self) -> str:
-        return self.name
+
+if __name__ == "__main__":
+    config = uvicorn.Config("app:app", port=3000, log_level="info")
+    server = uvicorn.Server(config)
+    server.run()
