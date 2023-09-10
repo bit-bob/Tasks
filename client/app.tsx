@@ -9,10 +9,19 @@ export const App = () => {
       <GlobalStyles />
       <WrappedTaskListItem
         task={{
+          id: "0",
           title: "Wash Dishes",
           childTasks: 1,
           events: [],
         }}
+        getTaskChildren={async () => [
+          {
+            id: "0",
+            title: "Wash Dishes",
+            childTasks: 0,
+            events: [],
+          },
+        ]}
       />
     </>
   );
