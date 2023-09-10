@@ -12,6 +12,13 @@ const Container = styled.div<{ level: number }>`
   align-self: stretch;
   user-select: none;
   margin-left: ${(props) => props.level * 28}px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
 `;
 
 const Details = styled.div`
@@ -56,13 +63,15 @@ export const TaskListItem = ({ task, level = 0 }: TaskListItemProps) => {
   const [playing, setPlaying] = React.useState(false);
   return (
     <>
-      <Container level={level}>
+      <Container level={task.childTasks === 0 ? level + 1 : level}>
         <Details>
-          <DropdownIcon
-            isOpen={isOpen}
-            onClick={() => setIsOpen((v) => !v)}
-            type="chevron.down"
-          />
+          {task.childTasks !== 0 && (
+            <DropdownIcon
+              isOpen={isOpen}
+              onClick={() => setIsOpen((v) => (task.childTasks === 0 ? v : !v))}
+              type="chevron.down"
+            />
+          )}
           <Icon type="circle" />
           <Text>{task.title}</Text>
         </Details>
@@ -77,7 +86,7 @@ export const TaskListItem = ({ task, level = 0 }: TaskListItemProps) => {
       {isOpen ? (
         <>
           <TaskListItem task={task} level={level + 1} />
-          <TaskListItem task={task} level={level + 1} />
+          <TaskListItem task={{ ...task, childTasks: 0 }} level={level + 1} />
         </>
       ) : null}
     </>
@@ -87,7 +96,7 @@ export const TaskListItem = ({ task, level = 0 }: TaskListItemProps) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 `;
 
 export const WrappedTaskListItem = (props: TaskListItemProps) => (
