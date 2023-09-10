@@ -12,4 +12,4 @@ async def get_tasks():
     return tasks
 
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="dist", html=True), name="static")

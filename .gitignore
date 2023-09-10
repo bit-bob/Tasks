@@ -1,2 +1,6 @@
 .venv/*
 *.sqlite3
+__pycache__
+.parcel-cache
+node_modules
+dist
