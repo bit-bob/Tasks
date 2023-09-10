@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 from datetime import datetime
 
 
@@ -27,6 +27,17 @@ class Task():
     def __str__(self) -> str:
         return self.name
 
+    def as_dict(self):
+        return {
+            'name': self.name,
+            'events': [
+                {
+                    'start': e.start,
+                    'end': e.end,
+                } for e in self.events
+            ]
+        }
+
     def start_event(
         self,
         start: datetime,
@@ -37,7 +48,7 @@ class Task():
         self,
         end: datetime,
     ):
-        self.events[0].end = end
+        self.events[-1].end = end
 
 
 class TaskList():
@@ -45,8 +56,18 @@ class TaskList():
     def __init__(self):
         self.tasks = []
 
-    def get_tasks(self):
-        return self.tasks
+    def get_tasks_as_dicts(self) -> List[Dict]:
+        return [t.as_dict() for t in self.tasks]
+
+    def get_task_as_dict(
+        self,
+        task_id: int,
+    ) -> List[Dict]:
+        try:
+            task = self.tasks[task_id]
+            return [task.as_dict()]
+        except IndexError:
+            return []
 
     def get_task(
         self,

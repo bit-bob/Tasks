@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from tasks import TaskList, Task
-from typing import Optional, List
 from datetime import datetime
+
+from tasks import TaskList
 
 # Create the app
 app = FastAPI()
@@ -17,9 +17,9 @@ paginate_limit = 10
 
 @app.get("/api/tasks")
 async def get_tasks(
-    task_id: Optional[int],
+    # task_id: Optional[int],
     # page_number: Optional[int],
-) -> List[Task]:
+):
     # input
     # - parent_task_id for filtering
     # - page_number, default 1
@@ -35,10 +35,10 @@ async def get_tasks(
     # - current_page_number
     # - paginate_limit
 
-    if task_id is None:
-        return tasks.get_tasks()
-    else:
-        return tasks.get_task(task_id)
+    # if task_id is None:
+    return tasks.get_tasks_as_dicts()
+    # else:
+        # return tasks.get_task(task_id)
 
 
 @app.post("/api/tasks")
@@ -58,14 +58,14 @@ async def play_task(
     task.start_event(time)
 
 
-@app.post("/api/tasks/play")
+@app.post("/api/tasks/pause")
 async def pause_task(
     task_id: int,
     time_iso_string: str,
 ):
     task = tasks.get_task(task_id)[0]
     time = datetime.fromisoformat(time_iso_string)
-    task.start_event(time)
+    task.stop_event(time)
 
 
 app.mount("/", StaticFiles(directory="dist", html=True), name="static")
