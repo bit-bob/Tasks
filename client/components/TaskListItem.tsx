@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { Icon } from "../icons/Icon";
@@ -48,6 +48,7 @@ export interface TaskEvent {
 }
 
 export interface Task {
+  id: string;
   childTasks: number;
   events: TaskEvent[];
   title: string;
@@ -56,11 +57,35 @@ export interface Task {
 export interface TaskListItemProps {
   task: Task;
   level?: number;
+  getTaskChildren: (task: Task) => Promise<Task[]>;
 }
 
-export const TaskListItem = ({ task, level = 0 }: TaskListItemProps) => {
+export const TaskListItem = ({
+  task,
+  level = 0,
+  getTaskChildren,
+}: TaskListItemProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [playing, setPlaying] = React.useState(false);
+
+  const [childTasks, setChildTasks] = React.useState<Task[] | null>(null);
+
+  useEffect(() => {
+    let cancel = false;
+    if (isOpen && childTasks === null) {
+      // fetch new tasks
+      getTaskChildren(task).then((tasks) => {
+        if (cancel) {
+          return;
+        }
+        setChildTasks(tasks);
+      });
+    }
+    return () => {
+      cancel = true;
+    };
+  }, [isOpen]);
+
   return (
     <>
       <Container level={task.childTasks === 0 ? level + 1 : level}>
@@ -85,8 +110,15 @@ export const TaskListItem = ({ task, level = 0 }: TaskListItemProps) => {
       </Container>
       {isOpen ? (
         <>
-          <TaskListItem task={task} level={level + 1} />
-          <TaskListItem task={{ ...task, childTasks: 0 }} level={level + 1} />
+          {childTasks === null
+            ? null
+            : childTasks.map((childTask) => (
+                <TaskListItem
+                  task={childTask}
+                  level={level + 1}
+                  getTaskChildren={getTaskChildren}
+                />
+              ))}
         </>
       ) : null}
     </>
