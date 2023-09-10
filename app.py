@@ -15,6 +15,16 @@ tasks.add_task('test')
 paginate_limit = 10
 
 
+# -- Tasks --
+# Create
+@app.post("/api/tasks")
+async def add_task(
+    name: str,
+):
+    tasks.add_task(name)
+
+
+# Read
 @app.get("/api/tasks")
 async def get_tasks(
     # task_id: Optional[int],
@@ -38,16 +48,15 @@ async def get_tasks(
     # if task_id is None:
     return tasks.get_tasks_as_dicts()
     # else:
-        # return tasks.get_task(task_id)
+    # return tasks.get_task(task_id)
 
 
-@app.post("/api/tasks")
-async def add_task(
-    name: str,
-):
-    tasks.add_task(name)
+# Update
+# Delete
 
 
+# -- TaskEvents --
+# Play
 @app.post("/api/tasks/play")
 async def play_task(
     task_id: int,
@@ -58,6 +67,7 @@ async def play_task(
     task.start_event(time)
 
 
+# Pause
 @app.post("/api/tasks/pause")
 async def pause_task(
     task_id: int,
@@ -68,4 +78,5 @@ async def pause_task(
     task.stop_event(time)
 
 
+# Static Front End
 app.mount("/", StaticFiles(directory="dist", html=True), name="static")
