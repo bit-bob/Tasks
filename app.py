@@ -52,6 +52,14 @@ async def get_tasks(
 
 
 # Update
+@app.post("/api/tasks/update")
+async def update_task(
+    task_id: int,
+    name: str,
+):
+    tasks.update_task(task_id, name)
+
+
 # Delete
 
 

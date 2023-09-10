@@ -87,4 +87,12 @@ class TaskList():
             return []
 
     # Update
+    def update_task(
+        self,
+        task_id: int,
+        name: str,
+    ):
+        task = self.get_task(task_id)[0]
+        task.name = name
+
     # Delete
