@@ -12,3 +12,12 @@ const preview = {
 };
 
 export default preview;
+
+import { withThemeFromJSXProvider } from "@storybook/addon-styling";
+import { GlobalStyles } from "../client/GlobalStyles";
+
+export const decorators = [
+  withThemeFromJSXProvider({
+    GlobalStyles,
+  }),
+];

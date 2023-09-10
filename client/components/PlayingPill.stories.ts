@@ -9,9 +9,8 @@ const meta: Meta<typeof PlayingPill> = {
 export default meta;
 type Story = StoryObj<typeof PlayingPill>;
 
-export const Primary: Story = {
+export const playingPill: Story = {
   args: {
-    backgroundColor: "#ff0",
-    label: "Button",
+    playing: false,
   },
 };
