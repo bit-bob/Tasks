@@ -16,9 +16,11 @@ export const ICON_MAP = {
 
 export interface IconProps {
   type: keyof typeof ICON_MAP;
+  onClick?: () => void;
+  className?: string;
 }
 
-export const Icon = ({ type }: IconProps) => {
+export const Icon = ({ type, onClick, className }: IconProps) => {
   const IconComponent = ICON_MAP[type];
-  return <IconComponent />;
+  return <IconComponent className={className} onClick={onClick} />;
 };
