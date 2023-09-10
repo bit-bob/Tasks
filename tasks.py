@@ -59,6 +59,14 @@ class TaskList():
     def get_tasks_as_dicts(self) -> List[Dict]:
         return [t.as_dict() for t in self.tasks]
 
+    # Create
+    def add_task(
+        self,
+        name: str,
+    ):
+        self.tasks.append(Task(name))
+
+    # Read
     def get_task_as_dict(
         self,
         task_id: int,
@@ -78,8 +86,5 @@ class TaskList():
         except IndexError:
             return []
 
-    def add_task(
-        self,
-        name: str,
-    ):
-        self.tasks.append(Task(name))
+    # Update
+    # Delete
