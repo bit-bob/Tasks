@@ -25,7 +25,7 @@ class Task():
         self.events = []
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.as_dict())
 
     def as_dict(self):
         return {
