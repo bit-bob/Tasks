@@ -14,3 +14,6 @@ npm_install:
 
 run:
 	./cxy.sh -fastapi ".venv/bin/python main.py" -client "npm run dev"
+
+storybook:
+	npm run storybook
