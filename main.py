@@ -1,8 +1,4 @@
 import uvicorn
-from tasks import Task
-
-
-tasks = [Task('test')]
 
 
 if __name__ == "__main__":
