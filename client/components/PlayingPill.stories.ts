@@ -11,6 +11,7 @@ type Story = StoryObj<typeof PlayingPill>;
 
 export const playingPill: Story = {
   args: {
+    started: false,
     playing: false,
   },
 };

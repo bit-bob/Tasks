@@ -107,6 +107,7 @@ export const TaskListItem = ({
             onDelete={() => alert("Deleted")}
           />
           <PlayingPill
+            started={false}
             playing={playing}
             onPlayPause={() => setPlaying((v) => !v)}
           />
