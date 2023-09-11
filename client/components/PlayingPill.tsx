@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { green300, green300Lighter, slate100, slate100Lighter } from "../constants"
 import { Icon } from "../icons/Icon";
 
 const Pill = styled.div<{ playing: boolean, started: boolean }>`
@@ -9,14 +10,14 @@ const Pill = styled.div<{ playing: boolean, started: boolean }>`
   align-items: center;
   gap: 6px;
   font-family: "Azeret Mono", monospace;
-  background-color: ${(props) => (props.playing ? "#c5f9c7ff" : "#c5f9c700")};
+  background-color: ${(props) => (props.playing ? green300 : slate100)};
   border-radius: 14px;
   user-select: none;
   cursor: pointer;
   transition: all 100ms ease-in-out;
 
   &:hover {
-    background-color: ${(props) => (props.playing ? "#a3f0a6ff" : "#eeeeeeff")};
+    background-color: ${(props) => (props.playing ? green300Lighter : slate100Lighter)};
   }
 
   &:active {

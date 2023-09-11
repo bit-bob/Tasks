@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { rose700, rose700Lighter } from "../constants"
+
 const Button = styled.button`
   display: flex;
   padding: 10px;
@@ -10,11 +12,11 @@ const Button = styled.button`
 
   border-radius: 8px;
   border: none;
-  background-color: #BE123C;
+  background-color: ${rose700};
 
   transition: all 100ms ease-in-out;
   &:hover {
-    background-color: #C71440;
+    background-color: ${rose700Lighter};
   }
   &:active {
     transform: scale(0.95);
