@@ -5,6 +5,8 @@ import { Icon } from "../icons/Icon";
 
 import { PlayingPill } from "./PlayingPill";
 
+import { DeleteButton } from "./DeleteButton";
+
 const Container = styled.div<{ level: number }>`
   display: flex;
   justify-content: space-between;
@@ -101,6 +103,9 @@ export const TaskListItem = ({
           <Text>{task.title}</Text>
         </Details>
         <Details>
+          <DeleteButton
+            onDelete={() => alert("Deleted")}
+          />
           <PlayingPill
             playing={playing}
             onPlayPause={() => setPlaying((v) => !v)}
