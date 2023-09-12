@@ -7,4 +7,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { GetTasksResponse } from './models/GetTasksResponse';
+export type { Task } from './models/Task';
+
 export { TasksService } from './services/TasksService';
