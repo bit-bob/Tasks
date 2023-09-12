@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 tasks = TaskList()
-tasks.add_task('test')
+tasks.add_task('Demo task from the backend')
 
 
 paginate_limit = 10
