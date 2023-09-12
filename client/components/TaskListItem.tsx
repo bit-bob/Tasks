@@ -26,6 +26,7 @@ const Container = styled.div<{ level: number }>`
 const Details = styled.div`
   display: flex;
   align-items: center;
+  gap: 20px;
 `;
 
 const Text = styled.span`
