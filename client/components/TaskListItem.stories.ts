@@ -13,7 +13,7 @@ export const taskListItem: Story = {
   args: {
     task: {
       id: "0",
-      title: "Wash Dishes",
+      name: "Wash Dishes",
     },
   },
 };

@@ -14,15 +14,15 @@ export const taskList: Story = {
     tasks: [
       {
         id: "0",
-        title: "Wash Dishes",
+        name: "Wash Dishes",
       },
       {
         id: "1",
-        title: "Feed Fishes",
+        name: "Feed Fishes",
       },
       {
         id: "2",
-        title: "Profit",
+        name: "Profit",
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Task } from "../types";
+import { Task } from "../../api-types/models/Task";
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const TaskListItem = ({
   return (
     <>
       <Container>
-        <Text>{task.title}</Text>
+        <Text>{task.name}</Text>
       </Container>
     </>
   );

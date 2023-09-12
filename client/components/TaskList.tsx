@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Task } from "../types";
+import { Task } from "../../api-types/models/Task";
 import { TaskListItem } from "./TaskListItem";
 
 const List = styled.div`

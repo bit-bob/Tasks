@@ -10,7 +10,7 @@ export const App = () => {
       <TaskListItem
         task={{
           id: "0",
-          title: "Wash Dishes",
+          name: "Wash Dishes",
         }}
       />
     </>
