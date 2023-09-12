@@ -20,3 +20,4 @@ storybook:
 
 openapi:
 	.venv/bin/python gen_openapi.py openapi.json
+	npm run generate-client

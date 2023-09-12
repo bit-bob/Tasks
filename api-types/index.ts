@@ -10,4 +10,4 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { ValidationError } from './models/ValidationError';
 
-export { DefaultService } from './services/DefaultService';
+export { TasksService } from './services/TasksService';
