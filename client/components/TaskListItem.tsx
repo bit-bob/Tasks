@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Task } from "../types";
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -25,11 +27,6 @@ const Text = styled.span`
   line-height: normal;
   letter-spacing: -0.333px;
 `;
-
-export interface Task {
-  id: string;
-  title: string;
-}
 
 export interface TaskListItemProps {
   task: Task;
