@@ -14,7 +14,7 @@ export class TasksService {
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static addTaskApiTasksPost(
+    public static addTask(
         name: string,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
@@ -34,7 +34,7 @@ export class TasksService {
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static getTasksApiTasksGet(): CancelablePromise<any> {
+    public static getTasks(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/tasks',
@@ -48,7 +48,7 @@ export class TasksService {
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static updateTaskApiTasksUpdatePost(
+    public static updateTask(
         taskId: number,
         name: string,
     ): CancelablePromise<any> {
@@ -72,7 +72,7 @@ export class TasksService {
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static playTaskApiTasksPlayPost(
+    public static playTask(
         taskId: number,
         timeIsoString: string,
     ): CancelablePromise<any> {
@@ -96,7 +96,7 @@ export class TasksService {
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static pauseTaskApiTasksPausePost(
+    public static pauseTask(
         taskId: number,
         timeIsoString: string,
     ): CancelablePromise<any> {

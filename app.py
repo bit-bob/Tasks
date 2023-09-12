@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from datetime import datetime
 
@@ -97,3 +98,12 @@ app.include_router(router)
 
 # Static Front End
 app.mount("/", StaticFiles(directory="dist", html=True), name="static")
+
+
+def use_route_names_as_operation_ids(app: FastAPI):
+    for route in app.routes:
+        if isinstance(route, APIRoute):
+            route.operation_id = route.name
+
+
+use_route_names_as_operation_ids(app)
