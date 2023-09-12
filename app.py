@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.staticfiles import StaticFiles
 from datetime import datetime
 
@@ -6,7 +6,10 @@ from tasks import TaskList
 
 # Create the app
 app = FastAPI()
-
+router = APIRouter(
+    prefix="/api",
+    tags=["tasks"],
+)
 
 tasks = TaskList()
 tasks.add_task('test')
@@ -17,7 +20,7 @@ paginate_limit = 10
 
 # -- Tasks --
 # Create
-@app.post("/api/tasks")
+@router.post("/tasks")
 async def add_task(
     name: str,
 ):
@@ -25,7 +28,7 @@ async def add_task(
 
 
 # Read
-@app.get("/api/tasks")
+@router.get("/tasks")
 async def get_tasks(
     # task_id: Optional[int],
     # page_number: Optional[int],
@@ -52,7 +55,7 @@ async def get_tasks(
 
 
 # Update
-@app.post("/api/tasks/update")
+@router.post("/tasks/update")
 async def update_task(
     task_id: int,
     name: str,
@@ -65,7 +68,7 @@ async def update_task(
 
 # -- TaskEvents --
 # Play
-@app.post("/api/tasks/play")
+@router.post("/tasks/play")
 async def play_task(
     task_id: int,
     time_iso_string: str,
@@ -76,7 +79,7 @@ async def play_task(
 
 
 # Pause
-@app.post("/api/tasks/pause")
+@router.post("/tasks/pause")
 async def pause_task(
     task_id: int,
     time_iso_string: str,
@@ -84,6 +87,12 @@ async def pause_task(
     task = tasks.get_task(task_id)[0]
     time = datetime.fromisoformat(time_iso_string)
     task.stop_event(time)
+
+
+# Include the router to the app
+# n.b. needs to be after the routes are added but before the static front end
+# is mounted for the docs site to work
+app.include_router(router)
 
 
 # Static Front End
