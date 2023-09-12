@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { green300, green300Lighter, slate100, slate100Lighter } from "../constants"
+import { green300, green300Lighter, slate100, slate100Lighter } from "../constants";
 import { Icon } from "../icons/Icon";
 
 const Pill = styled.div<{ playing: boolean, started: boolean }>`

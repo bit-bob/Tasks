@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { rose700, rose700Lighter } from "../constants"
+import { rose700, rose700Lighter } from "../constants";
 
 const Button = styled.button`
   display: flex;

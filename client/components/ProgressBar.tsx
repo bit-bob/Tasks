@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { slate100, rose800 } from "../constants"
+import { slate100, rose800 } from "../constants";
 
 const Bar = styled.progress`
   width: 100%;
