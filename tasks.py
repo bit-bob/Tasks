@@ -1,16 +1,19 @@
 from typing import List
+from uuid import UUID, uuid4
 
 
 class Task():
 
     def __init__(
         self,
-        name,
+        id: UUID,
+        name: str,
     ) -> None:
+        self.id = id
         self.name = name
 
     def __str__(self) -> str:
-        return f"Task: {self.name}"
+        return f"Task {self.id}: {self.name}"
 
 
 class TaskList():
@@ -23,7 +26,7 @@ class TaskList():
         self,
         name: str,
     ):
-        self.tasks.append(Task(name))
+        self.tasks.append(Task(id=uuid4(), name=name))
 
     # Read
     def get_tasks(self) -> List[Task]:

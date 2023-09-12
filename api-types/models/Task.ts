@@ -4,6 +4,7 @@
 /* eslint-disable */
 
 export type Task = {
+    id: string;
     name: string;
 };
 

@@ -26,4 +26,4 @@ class GetTasksResponse(BaseModel):
 
 @router.get("/tasks")
 async def get_tasks() -> GetTasksResponse:
-    return GetTasksResponse(tasks=[Task(name=t.name) for t in demo_tasks.get_tasks()])
+    return GetTasksResponse(tasks=[Task(id=t.id, name=t.name) for t in demo_tasks.get_tasks()])
