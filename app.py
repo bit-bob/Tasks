@@ -1,26 +1,10 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
+from router import router
 
-from tasks import TaskList
-
-
-# Create the app
+# App
 app = FastAPI()
-router = APIRouter(
-    prefix="/api",
-    tags=["tasks"],
-)
-
-tasks = TaskList()
-tasks.add_task('Demo task from the backend')
-
-
-# -- Tasks --
-# Read
-@router.get("/tasks")
-async def get_tasks():
-    return [t.name for t in tasks.get_tasks()]
 
 
 # Include the router to the app
