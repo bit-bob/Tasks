@@ -17,3 +17,6 @@ run:
 
 storybook:
 	npm run storybook
+
+openapi:
+	.venv/bin/python gen_openapi.py openapi.json

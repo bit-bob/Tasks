@@ -4,3 +4,4 @@ __pycache__
 .parcel-cache
 node_modules
 dist
+openapi.json
