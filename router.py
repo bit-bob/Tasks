@@ -15,7 +15,10 @@ router = APIRouter(
 
 # Demo tasks
 demo_tasks = TaskList()
-demo_tasks.add_task('Demo task from the backend')
+demo_tasks.add_task('Demo task 1')
+demo_tasks.add_task('Demo task 2')
+demo_tasks.add_task('Demo task Three')
+demo_tasks.add_task('Demo task Wheee')
 
 
 # -- Tasks --
