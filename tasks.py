@@ -20,8 +20,8 @@ class Task():
 
     def __lt__(self, other: 'Task'):
 
-        if self.completed is None and other.completed is None:
-            # if both are incomplete, check created timestamp
+        if (self.completed is None and other.completed is None) or (self.completed == other.completed):
+            # if both are incomplete or completed at the same time, check created timestamp
             return self.created < other.created
 
         if self.completed is None:
