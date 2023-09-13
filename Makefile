@@ -21,3 +21,7 @@ storybook:
 openapi:
 	.venv/bin/python gen_openapi.py openapi.json
 	npm run generate-client
+
+pretty:
+	npm run prettier:fix
+	npm run prettier:check
