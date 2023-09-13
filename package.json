@@ -9,6 +9,7 @@
     "prettier:check": "prettier . --check"
   },
   "devDependencies": {
+    "@formkit/auto-animate": "^0.8.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",

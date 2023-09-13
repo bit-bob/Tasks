@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import { TaskModel } from "../../api-types/models/TaskModel";
 
@@ -18,8 +19,9 @@ export interface TaskListProps {
 }
 
 export const TaskList = ({ tasks, onToggleComplete }: TaskListProps) => {
+  const [animationParent] = useAutoAnimate();
   return (
-    <List>
+    <List ref={animationParent}>
       {tasks.map((task) => (
         <TaskListItem
           onToggleComplete={() => onToggleComplete?.(task)}

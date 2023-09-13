@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
-from uuid import UUID, uuid4
+from uuid import UUID, euuid4
+from time import sleep
 
 
 class Task():
@@ -13,9 +14,28 @@ class Task():
         self.id = uuid4()
         self.name = name
         self.completed = completed
+        self.created = datetime.now()
+        sleep(1) # temporary to make sure they're in order
 
     def __str__(self) -> str:
         return f"Task {self.id}: {self.name}{' (complete)' if self.completed else ''}"
+
+    def __lt__(self, other: 'Task'):
+
+        if self.completed is None and other.completed is None:
+            # if both are incomplete, check created timestamp
+            return self.created < other.created
+
+        if self.completed is None:
+            # if other is complete, other is lt
+            return True
+
+        if other.completed is None:
+            # if self is complete, self is lt
+            return False
+
+        # if both are complete, check completed timestamp
+        return self.completed > other.completed
 
 
 class TaskList():
@@ -31,7 +51,12 @@ class TaskList():
         self.tasks.append(task)
 
     # Read
-    def get_tasks(self) -> List[Task]:
+    def get_tasks(
+        self,
+        to_sort: bool = True,
+    ) -> List[Task]:
+        if to_sort:
+            return sorted(self.tasks)
         return self.tasks
 
     def get_task(
