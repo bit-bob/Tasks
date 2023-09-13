@@ -8,6 +8,6 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { GetTasksResponse } from './models/GetTasksResponse';
-export type { Task } from './models/Task';
+export type { TaskModel } from './models/TaskModel';
 
 export { TasksService } from './services/TasksService';

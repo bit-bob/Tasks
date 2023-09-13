@@ -3,13 +3,13 @@ import { GlobalStyles } from "./GlobalStyles";
 
 import { TaskList } from "./components/TaskList";
 
-import { OpenAPI, TasksService, Task } from "../api-types";
+import { OpenAPI, TasksService, TaskModel } from "../api-types";
 
 // TODO: fix to environment variable at build time
 OpenAPI.BASE = "http://localhost:3000";
 
 export const App = () => {
-  const [tasks, setTasks] = useState<Task[] | null>(null);
+  const [tasks, setTasks] = useState<TaskModel[] | null>(null);
 
   useEffect(() => {
     let cancel = false;
@@ -33,7 +33,11 @@ export const App = () => {
   return (
     <>
       <GlobalStyles />
-      {tasks === null ? "loading..." : <TaskList tasks={tasks} />}
+      {tasks === null ? (
+        "loading..."
+      ) : (
+        <TaskList onToggleComplete={alert} tasks={tasks} />
+      )}
     </>
   );
 };

@@ -3,8 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Task = {
+export type TaskModel = {
     id: string;
     name: string;
+    completed: (string | null);
 };
 

@@ -14,6 +14,7 @@ export const taskListItem: Story = {
     task: {
       id: "0",
       name: "Wash Dishes",
+      completed: null,
     },
   },
 };

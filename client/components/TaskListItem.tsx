@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Task } from "../../api-types/models/Task";
+import { TaskModel } from "../../api-types/models/TaskModel";
+
+import { Icon } from "../icons/Icon";
 
 const Container = styled.div`
   display: flex;
@@ -29,14 +31,19 @@ const Text = styled.span`
 `;
 
 export interface TaskListItemProps {
-  task: Task;
+  task: TaskModel;
+  onToggleComplete?: () => void;
 }
 
-export const TaskListItem = ({ task }: TaskListItemProps) => {
+export const TaskListItem = ({ task, onToggleComplete }: TaskListItemProps) => {
   return (
     <>
       <Container>
         <Text>{task.name}</Text>
+        <Icon
+          onClick={onToggleComplete}
+          type={task.completed ? "circle.checked" : "circle"}
+        />
       </Container>
     </>
   );

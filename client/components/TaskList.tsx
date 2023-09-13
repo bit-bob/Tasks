@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Task } from "../../api-types/models/Task";
+import { TaskModel } from "../../api-types/models/TaskModel";
+
 import { TaskListItem } from "./TaskListItem";
 
 const List = styled.div`
@@ -12,14 +13,19 @@ const List = styled.div`
 `;
 
 export interface TaskListProps {
-  tasks: Task[];
+  tasks: TaskModel[];
+  onToggleComplete?: (id: string) => void;
 }
 
-export const TaskList = ({ tasks }: TaskListProps) => {
+export const TaskList = ({ tasks, onToggleComplete }: TaskListProps) => {
   return (
     <List>
       {tasks.map((task) => (
-        <TaskListItem key={task.id} task={task} />
+        <TaskListItem
+          onToggleComplete={() => onToggleComplete?.(task.id)}
+          key={task.id}
+          task={task}
+        />
       ))}
     </List>
   );

@@ -3,9 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Task } from './Task';
+import type { TaskModel } from './TaskModel';
 
 export type GetTasksResponse = {
-    tasks: Array<Task>;
+    tasks: Array<TaskModel>;
 };
 
