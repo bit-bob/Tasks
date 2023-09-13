@@ -3,20 +3,18 @@ venv:
 		python3 -m venv .venv; \
 	fi
 
-requirements:
-	.venv/bin/pip install -r requirements.txt
-
 freeze:
 	.venv/bin/pip freeze > requirements.txt
 
-npm_install:
+install_pip:
+	.venv/bin/pip install -r requirements.txt
+
+install_npm:
 	npm install
 
-run:
-	./cxy.sh -fastapi ".venv/bin/python api/main.py" -client "npm run dev"
-
-storybook:
-	npm run storybook
+install:
+	.venv/bin/pip install -r requirements.txt
+	npm install
 
 openapi:
 	.venv/bin/python api/gen_openapi.py openapi.json
@@ -24,4 +22,18 @@ openapi:
 
 pretty:
 	npm run prettier:fix
-	npm run prettier:check
+
+clean:
+	.venv/bin/python api/gen_openapi.py openapi.json
+	npm run generate-client
+	npm run prettier:fix
+	.venv/bin/pytest
+
+test:
+	.venv/bin/pytest
+
+storybook:
+	npm run storybook
+
+run:
+	./cxy.sh -fastapi ".venv/bin/python api/main.py" -client "npm run dev"

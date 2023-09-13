@@ -1,25 +1,43 @@
-# Initial Setup
+# Tasks
 
-## To create the env
+## Initial Setup
 
+## Python Env Setup
 ```
-python3 -m venv .venv
+make venv
 source .venv/bin/activate
 ```
+> **_NOTE:_** `source .venv/bin/activate` can't go in the makefile because source is a shell built-in command, not an executable that you can start from anywhere but a shell
+see https://superuser.com/questions/1758394/makefile-with-source-command-not-working
 
-## To install dependencies
-
+## Installing Requirements
+This installs the python and nmp packages
 ```
-pip install -r requirements.txt
+make install
 ```
 
-- To run the webserver
-  run main.py
+## Running Storybook to see the components
+```
+make storybook
+```
 
-# To Use / Test the API
+## Running the app
+```
+make run
+```
 
-http://localhost:8000/docs
+## Using the app
+[Local App](http://localhost:8000/)
 
-# Seeing the tables
+## Using the API
+[Local API Access](http://localhost:8000/docs)
 
-http://localhost:8000/
+## Running the tests
+```
+make test
+```
+
+## Cleaning and Generating the code
+```
+make clean
+```
