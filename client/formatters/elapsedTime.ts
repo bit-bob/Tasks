@@ -1,8 +1,8 @@
-export function formatTime(seconds: number) {
+export const formatElapsedTime = (seconds: number) => {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.round(seconds % 60);
-  return [h, m > 9 ? m : h ? "0" + m : m || "0", s > 9 ? s : "0" + s]
+  return [h, m > 9 ? m : h > 9 ? m : "0" + m || "0", s > 9 ? s : "0" + s]
     .filter(Boolean)
     .join(":");
-}
+};
