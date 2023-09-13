@@ -13,13 +13,13 @@ npm_install:
 	npm install
 
 run:
-	./cxy.sh -fastapi ".venv/bin/python main.py" -client "npm run dev"
+	./cxy.sh -fastapi ".venv/bin/python api/main.py" -client "npm run dev"
 
 storybook:
 	npm run storybook
 
 openapi:
-	.venv/bin/python gen_openapi.py openapi.json
+	.venv/bin/python api/gen_openapi.py openapi.json
 	npm run generate-client
 
 pretty:
