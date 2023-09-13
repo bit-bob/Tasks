@@ -1,15 +1,14 @@
 from typing import List
-from uuid import UUID, uuid4
+from uuid import uuid4
 
 
 class Task():
 
     def __init__(
         self,
-        id: UUID,
         name: str,
     ) -> None:
-        self.id = id
+        self.id = uuid4()
         self.name = name
 
     def __str__(self) -> str:
@@ -26,7 +25,7 @@ class TaskList():
         self,
         name: str,
     ):
-        self.tasks.append(Task(id=uuid4(), name=name))
+        self.tasks.append(Task(name=name))
 
     # Read
     def get_tasks(self) -> List[Task]:
