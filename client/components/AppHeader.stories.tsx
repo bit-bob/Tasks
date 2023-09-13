@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { AppHeader } from "./AppHeader";
-import { PlayingPill } from './PlayingPill'
+import { PlayingPill } from "./PlayingPill";
 
 const meta: Meta<typeof AppHeader> = {
   component: AppHeader,
@@ -14,14 +14,13 @@ type Story = StoryObj<typeof AppHeader>;
 export const simpleAppHeader: Story = {
   args: {
     title: "tasks",
-    actions: null
+    actions: null,
   },
 };
 
 export const appHeaderWithPlayingPill: Story = {
-    args: {
-      title: "Wash Dishes",
-      actions: <PlayingPill started playing />
-    },
-  };
-
+  args: {
+    title: "Wash Dishes",
+    actions: <PlayingPill started playing />,
+  },
+};
