@@ -38,7 +38,7 @@ demo_task_info = [
     ('Complete Tasks - back end - endpoints', None),
     ('Complete Tasks - front end - full implementation - toggle complete button',
      "2023-09-13T14:38Z"),
-    ('Complete Tasks - front end - full implementation - make text more faint when complete', None),
+    ('Complete Tasks - front end - full implementation - make text more faint when complete', "2023-09-13T14:52Z"),
     ('Complete Tasks - front end - full implementation - move completed tasks to the bottom of the page', None),
 
     ('Delete Tasks - front end - storybook components - delete button', None),

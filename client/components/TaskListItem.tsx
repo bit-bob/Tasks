@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { TaskModel } from "../../api-types/models/TaskModel";
 
 import { Icon } from "../icons/Icon";
+import { blackFaded } from "../constants";
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const Container = styled.div`
   }
 `;
 
-const Text = styled.span`
+const Text = styled.span<{ completed: boolean }>`
   text-align: center;
   font-family: Comfortaa;
   font-size: 15px;
@@ -28,6 +29,7 @@ const Text = styled.span`
   font-weight: 300;
   line-height: normal;
   letter-spacing: -0.333px;
+  ${(props) => props.completed && `color: ${blackFaded}`}
 `;
 
 export interface TaskListItemProps {
@@ -39,7 +41,7 @@ export const TaskListItem = ({ task, onToggleComplete }: TaskListItemProps) => {
   return (
     <>
       <Container>
-        <Text>{task.name}</Text>
+        <Text completed={Boolean(task.completed)}>{task.name}</Text>
         <Icon
           onClick={onToggleComplete}
           type={task.completed ? "circle.checked" : "circle"}

@@ -8,3 +8,5 @@ export const rose600 = "rgb(225 29 72)";
 export const rose700 = "rgb(190 18 60)";
 export const rose700Lighter = "#C71440";
 export const rose800 = "rgb(159 18 57)";
+
+export const blackFaded = "rgba(0, 0, 0, 0.50)";
