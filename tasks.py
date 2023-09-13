@@ -33,7 +33,7 @@ class Task():
             return False
 
         # if both are complete, check completed timestamp
-        return self.completed > other.completed
+        return self.completed < other.completed
 
 
 class TaskList():
