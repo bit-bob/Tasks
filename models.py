@@ -2,6 +2,6 @@ from pydantic import BaseModel
 from uuid import UUID
 
 
-class Task(BaseModel):
+class TaskModel(BaseModel):
     id: UUID
     name: str

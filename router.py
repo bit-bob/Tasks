@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List
 
 from tasks import TaskList
-from models import Task
+from models import TaskModel
 
 
 # App
@@ -43,9 +43,9 @@ demo_tasks.add_task('Parent Tasks')
 # -- Tasks --
 # Read
 class GetTasksResponse(BaseModel):
-    tasks: List[Task]
+    tasks: List[TaskModel]
 
 
 @router.get("/tasks")
 async def get_tasks() -> GetTasksResponse:
-    return GetTasksResponse(tasks=[Task(id=t.id, name=t.name) for t in demo_tasks.get_tasks()])
+    return GetTasksResponse(tasks=[TaskModel(id=t.id, name=t.name) for t in demo_tasks.get_tasks()])
