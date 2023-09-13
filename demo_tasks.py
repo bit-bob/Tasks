@@ -58,7 +58,7 @@ demo_task_info = [
     ),
     (
         'Complete Tasks - front end - full implementation - move completed tasks to the bottom of the page',
-        None,
+        datetime(2023, 9, 13, 15, 58, 10, tzinfo=timezone.utc),
     ),
     (
         'Delete Tasks - front end - storybook components - delete button',
