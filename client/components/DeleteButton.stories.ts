@@ -10,5 +10,5 @@ export default meta;
 type Story = StoryObj<typeof DeleteButton>;
 
 export const deleteButton: Story = {
-  args: {  },
+  args: {},
 };

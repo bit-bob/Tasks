@@ -22,7 +22,7 @@ const Button = styled.button`
     transform: scale(0.95);
   }
 
-  color: #FFF;
+  color: #fff;
   text-align: center;
 
   /* Body */
@@ -39,9 +39,5 @@ export interface DeleteButtonProps {
 }
 
 export const DeleteButton = ({ onDelete }: DeleteButtonProps) => {
-  return (
-    <Button onClick={onDelete}>
-      Delete
-    </Button>
-  );
+  return <Button onClick={onDelete}>Delete</Button>;
 };

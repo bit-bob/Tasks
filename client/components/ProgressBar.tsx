@@ -10,7 +10,7 @@ const Bar = styled.progress`
   This exists only to break out of the default style
   without actually adding a visible background 
   */
-  background-color: rgba(0,0,0,.01);
+  background-color: rgba(0, 0, 0, 0.01);
 
   &::-webkit-progress-bar {
     background-color: ${slate100};
@@ -27,7 +27,5 @@ export interface ProgressBarProps {
 }
 
 export const ProgressBar = ({ progress }: ProgressBarProps) => {
-  return (
-    <Bar max={100} value={progress}/>
-  );
+  return <Bar max={100} value={progress} />;
 };

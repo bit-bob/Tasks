@@ -32,9 +32,7 @@ export interface TaskListItemProps {
   task: Task;
 }
 
-export const TaskListItem = ({
-  task,
-}: TaskListItemProps) => {
+export const TaskListItem = ({ task }: TaskListItemProps) => {
   return (
     <>
       <Container>

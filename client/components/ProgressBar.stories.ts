@@ -10,7 +10,7 @@ export default meta;
 type Story = StoryObj<typeof ProgressBar>;
 
 export const progressBar: Story = {
-  args: { 
-    progress: 70
+  args: {
+    progress: 70,
   },
 };

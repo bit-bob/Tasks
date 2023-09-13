@@ -13,25 +13,27 @@ export const App = () => {
 
   useEffect(() => {
     let cancel = false;
-    TasksService.getTasks().then(response => response.tasks).then((tasks) => {
-      if (cancel) {
-        // this is run if the data is loaded but the component has been unmounted
-        return;
-      }
-      // this is run when the data is loaded and can be set on the component
-      setTasks(tasks);
-    });
+    TasksService.getTasks()
+      .then((response) => response.tasks)
+      .then((tasks) => {
+        if (cancel) {
+          // this is run if the data is loaded but the component has been unmounted
+          return;
+        }
+        // this is run when the data is loaded and can be set on the component
+        setTasks(tasks);
+      });
 
     // this is run when the component unmounts
     return () => {
-      cancel = true
+      cancel = true;
     };
   }, []);
 
   return (
     <>
       <GlobalStyles />
-      {tasks === null ? "loading..." : <TaskList tasks={tasks}/>}
+      {tasks === null ? "loading..." : <TaskList tasks={tasks} />}
     </>
   );
 };

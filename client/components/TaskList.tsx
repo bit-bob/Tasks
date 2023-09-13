@@ -11,17 +11,16 @@ const List = styled.div`
   gap: 5px;
 `;
 
-
 export interface TaskListProps {
   tasks: Task[];
 }
 
-export const TaskList = ({
-  tasks,
-}: TaskListProps) => {
-  return ( 
+export const TaskList = ({ tasks }: TaskListProps) => {
+  return (
     <List>
-      { tasks.map(task => <TaskListItem key={task.id} task={task}/>) }
+      {tasks.map((task) => (
+        <TaskListItem key={task.id} task={task} />
+      ))}
     </List>
   );
 };
