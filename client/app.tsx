@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { GlobalStyles } from "./GlobalStyles";
+import styled from "styled-components";
 
+import { AppHeader } from "./components/AppHeader";
 import { TaskList } from "./components/TaskList";
 
 import { OpenAPI, TasksService, TaskModel } from "../api-types";
 
 // TODO: fix to environment variable at build time
 OpenAPI.BASE = "http://localhost:3000";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
 
 export const App = () => {
   const [tasks, setTasks] = useState<TaskModel[] | null>(null);
@@ -31,8 +39,9 @@ export const App = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <GlobalStyles />
+      <AppHeader title="Tasks" />
       {tasks === null ? (
         "loading..."
       ) : (
@@ -49,6 +58,6 @@ export const App = () => {
           tasks={tasks}
         />
       )}
-    </>
+    </Container>
   );
 };

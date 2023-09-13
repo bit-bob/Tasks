@@ -22,7 +22,6 @@ const Container = styled.div`
 `;
 
 const Text = styled.span<{ completed: boolean }>`
-  text-align: center;
   font-family: Comfortaa;
   font-size: 15px;
   font-style: normal;
