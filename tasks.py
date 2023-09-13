@@ -23,9 +23,9 @@ class TaskList():
     # Create
     def add_task(
         self,
-        name: str,
+        task: Task,
     ):
-        self.tasks.append(Task(name=name))
+        self.tasks.append(task)
 
     # Read
     def get_tasks(self) -> List[Task]:
