@@ -14,7 +14,7 @@ const List = styled.div`
 
 export interface TaskListProps {
   tasks: TaskModel[];
-  onToggleComplete?: (id: string) => void;
+  onToggleComplete?: (task: TaskModel) => void;
 }
 
 export const TaskList = ({ tasks, onToggleComplete }: TaskListProps) => {
@@ -22,7 +22,7 @@ export const TaskList = ({ tasks, onToggleComplete }: TaskListProps) => {
     <List>
       {tasks.map((task) => (
         <TaskListItem
-          onToggleComplete={() => onToggleComplete?.(task.id)}
+          onToggleComplete={() => onToggleComplete?.(task)}
           key={task.id}
           task={task}
         />

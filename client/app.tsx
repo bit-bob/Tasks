@@ -36,7 +36,18 @@ export const App = () => {
       {tasks === null ? (
         "loading..."
       ) : (
-        <TaskList onToggleComplete={alert} tasks={tasks} />
+        <TaskList
+          onToggleComplete={(task) => {
+            TasksService.toggleTaskComplete({
+              task_id: task.id,
+              completed: task.completed ? null : new Date().toISOString(),
+            })
+              .then(TasksService.getTasks)
+              .then((response) => response.tasks)
+              .then(setTasks);
+          }}
+          tasks={tasks}
+        />
       )}
     </>
   );
