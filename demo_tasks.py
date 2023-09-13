@@ -34,19 +34,11 @@ demo_task_info = [
     ),
     (
         'Complete Tasks - front end - storybook components - task text changes',
-        None,
-    ),
-    (
-        'Complete Tasks - front end - storybook components - move tasks to the bottom or hidden',
-        None,
-    ),
-    (
-        'Complete Tasks - front end - storybook components - completed tasks page',
-        None,
+        datetime(2023, 9, 13, 14, 38, tzinfo=timezone.utc),
     ),
     (
         'Complete Tasks - back end - endpoints',
-        None,
+        datetime(2023, 9, 13, 14, 38, tzinfo=timezone.utc),
     ),
     (
         'Complete Tasks - front end - full implementation - toggle complete button',
@@ -62,7 +54,7 @@ demo_task_info = [
     ),
     (
         'Delete Tasks - front end - storybook components - delete button',
-        None,
+        datetime(2023, 9, 11, 18, 30, 8, tzinfo=timezone.utc),
     ),
     (
         'Delete Tasks - back end - endpoints',
@@ -98,6 +90,10 @@ demo_task_info = [
     ),
     (
         'Parent Tasks',
+        None,
+    ),
+    (
+        'Local DB for offline use',
         None,
     ),
 ]
