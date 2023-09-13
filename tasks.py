@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import List, Optional
-from uuid import UUID, euuid4
-from time import sleep
+from uuid import UUID, uuid4
 
 
 class Task():
@@ -15,7 +14,6 @@ class Task():
         self.name = name
         self.completed = completed
         self.created = datetime.now()
-        sleep(1) # temporary to make sure they're in order
 
     def __str__(self) -> str:
         return f"Task {self.id}: {self.name}{' (complete)' if self.completed else ''}"
