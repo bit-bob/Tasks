@@ -33,6 +33,21 @@ async def get_tasks() -> GetTasksResponse:
 
 
 # Update
+class UpdateTaskRequest(BaseModel):
+    task_id: UUID
+    name: str
+
+
+@router.post("/tasks/update")
+async def update_task(
+    request: UpdateTaskRequest,
+) -> None:
+    task = demo_tasks.get_task(request.task_id)
+    if task is None:
+        raise Exception
+    task.name = request.name
+
+
 class ToggleTaskCompleteRequest(BaseModel):
     task_id: UUID
     completed: Optional[datetime]

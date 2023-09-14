@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { GetTasksResponse } from '../models/GetTasksResponse';
 import type { ToggleTaskCompleteRequest } from '../models/ToggleTaskCompleteRequest';
+import type { UpdateTaskRequest } from '../models/UpdateTaskRequest';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -20,6 +21,26 @@ export class TasksService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/tasks',
+        });
+    }
+
+    /**
+     * Update Task
+     * @param requestBody
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static updateTask(
+        requestBody: UpdateTaskRequest,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/tasks/update',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
         });
     }
 
