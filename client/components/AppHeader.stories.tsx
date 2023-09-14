@@ -1,8 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AppHeader } from "./AppHeader";
+import { AppHeader, AppHeaderTitle } from "./AppHeader";
 import { PlayingPill } from "./PlayingPill";
+import { InlineEdit } from "./InlineEdit";
 
 const meta: Meta<typeof AppHeader> = {
   component: AppHeader,
@@ -21,6 +22,19 @@ export const simpleAppHeader: Story = {
 export const appHeaderWithPlayingPill: Story = {
   args: {
     title: "Wash Dishes",
+    actions: <PlayingPill started playing />,
+  },
+};
+
+export const appHeaderWithEditableTitle: Story = {
+  args: {
+    title: (
+      <InlineEdit
+        value="Wash Dishes"
+        as={AppHeaderTitle as any}
+        onChange={async () => {}}
+      />
+    ),
     actions: <PlayingPill started playing />,
   },
 };

@@ -13,7 +13,7 @@ const Actions = styled.div`
   display: flex;
 `;
 
-const Title = styled.h1`
+export const AppHeaderTitle = styled.h1`
   color: #000;
   text-align: center;
   /* Title */
@@ -33,7 +33,7 @@ export interface AppHeaderProps {
 export const AppHeader = ({ title, actions }: AppHeaderProps) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      <AppHeaderTitle>{title}</AppHeaderTitle>
       <Actions>{actions}</Actions>
     </Container>
   );
