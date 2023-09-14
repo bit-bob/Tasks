@@ -5,3 +5,4 @@ __pycache__
 node_modules
 dist
 openapi.json
+api/demo_tasks_personal.py

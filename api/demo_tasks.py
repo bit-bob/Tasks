@@ -1,5 +1,6 @@
 from tasks import Task, TaskList
 from datetime import datetime, timezone
+from demo_tasks_personal import demo_tasks_personal_info
 
 
 def populate_demo_tasks(task_list, info):
@@ -11,26 +12,26 @@ def populate_demo_tasks(task_list, info):
         ))
 
 
-demo_task_info = [
+demo_tasks_info = [
     (
-        'Create Tasks - front end - storybook components - create button',
-        None,
-    ),
-    (
-        'Create Tasks - front end - storybook components - create form',
-        None,
-    ),
-    (
-        'Create Tasks - back end - endpoints',
-        None,
-    ),
-    (
-        'Create Tasks - front end - full implementation',
-        None,
-    ),
-    (
-        'Complete Tasks - front end - storybook components - complete button',
+        'front end - reusable components - complete button',
         datetime(2023, 9, 13, 12, 59, 5, tzinfo=timezone.utc),
+    ),
+    (
+        'front end - reusable components - toggle complete button',
+        datetime(2023, 9, 13, 14, 38, tzinfo=timezone.utc),
+    ),
+    (
+        'front end - reusable components - delete button',
+        datetime(2023, 9, 11, 18, 30, 8, tzinfo=timezone.utc),
+    ),
+    (
+        'front end - reusable components - front end - inline edit text',
+        datetime(2023, 9, 14, 6, 30, 51, tzinfo=timezone.utc),
+    ),
+    (
+        'front end - reusable components - front end - inline edit in a task list item',
+        datetime(2023, 9, 16, 14, 6, 0, tzinfo=timezone.utc),
     ),
     (
         'Complete Tasks - front end - storybook components - task text changes',
@@ -38,10 +39,6 @@ demo_task_info = [
     ),
     (
         'Complete Tasks - back end - endpoints',
-        datetime(2023, 9, 13, 14, 38, tzinfo=timezone.utc),
-    ),
-    (
-        'Complete Tasks - front end - full implementation - toggle complete button',
         datetime(2023, 9, 13, 14, 38, tzinfo=timezone.utc),
     ),
     (
@@ -53,8 +50,20 @@ demo_task_info = [
         datetime(2023, 9, 13, 15, 58, 10, tzinfo=timezone.utc),
     ),
     (
-        'Delete Tasks - front end - storybook components - delete button',
-        datetime(2023, 9, 11, 18, 30, 8, tzinfo=timezone.utc),
+        'Create Tasks - back end - endpoints',
+        None,
+    ),
+    (
+        'Create Tasks - front end - full implementation',
+        None,
+    ),
+    (
+        'Update Tasks - back end - endpoints',
+        datetime(2023, 9, 14, 13, 23, 45, tzinfo=timezone.utc),
+    ),
+    (
+        'Update Tasks - front end - full implementation',
+        None,
     ),
     (
         'Delete Tasks - back end - endpoints',
@@ -65,19 +74,15 @@ demo_task_info = [
         None,
     ),
     (
-        'Update Tasks - front end - storybook components - edit button',
-        None,
-    ),
-    (
-        'Update Tasks - back end - endpoints',
-        None,
-    ),
-    (
-        'Update Tasks - front end - full implementation',
-        None,
-    ),
-    (
         'Persisting Tasks',
+        None,
+    ),
+    (
+        'front end - reusable components - front end - date picker',
+        None,
+    ),
+    (
+        'front end - reusable components - front end - task picker',
         None,
     ),
     (
@@ -99,4 +104,5 @@ demo_task_info = [
 ]
 
 demo_tasks = TaskList()
-populate_demo_tasks(demo_tasks, demo_task_info)
+populate_demo_tasks(demo_tasks, demo_tasks_info)
+populate_demo_tasks(demo_tasks, demo_tasks_personal_info)
