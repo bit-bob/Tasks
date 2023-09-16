@@ -19,7 +19,11 @@ export interface TaskListProps {
   onEditTaskTitle?: (task: TaskModel, newTitle: string) => void;
 }
 
-export const TaskList = ({ tasks, onToggleComplete, onEditTaskTitle }: TaskListProps) => {
+export const TaskList = ({
+  tasks,
+  onToggleComplete,
+  onEditTaskTitle,
+}: TaskListProps) => {
   const [animationParent] = useAutoAnimate();
   return (
     <List ref={animationParent}>
