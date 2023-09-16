@@ -12,6 +12,8 @@
     "@babel/core": "^7.22.17",
     "@babel/preset-env": "^7.22.15",
     "@babel/preset-typescript": "^7.22.15",
+    "@fontsource/azeret-mono": "^5.0.12",
+    "@fontsource/comfortaa": "^5.0.12",
     "@formkit/auto-animate": "^0.8.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
@@ -36,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-textarea-autosize": "^8.5.3",
     "storybook": "^7.4.0",
-    "styled-components": "^6.0.7"
+    "styled-components": "^6.0.7",
+    "styled-reset": "^4.5.1"
   }
 }
