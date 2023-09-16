@@ -7,6 +7,7 @@ export const white = "#FFF";
 export const slate50 = "rgb(248 250 252)";
 export const slate100 = "rgb(241 245 249)";
 export const slate100Lighter = "#F1F6FB";
+export const slate200 = "#e2e8f0";
 export const slate300 = "rgb(203 213 225)";
 export const slate900 = "rgb(15 23 42)";
 

@@ -15,6 +15,7 @@
     "@fontsource/azeret-mono": "^5.0.12",
     "@fontsource/comfortaa": "^5.0.12",
     "@formkit/auto-animate": "^0.8.0",
+    "@react-aria/interactions": "^3.18.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",

@@ -6,4 +6,7 @@ import "@fontsource/comfortaa";
 
 export const GlobalStyles = createGlobalStyle`
 ${reset}
+html {
+    background-color: #f8fafc;
+}
 `;
