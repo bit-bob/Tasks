@@ -1,14 +1,15 @@
 import React from "react";
 
-export const CircleChecked = ({ onClick, className }) => (
+import { IconComponent } from "./Icon";
+
+export const CircleChecked: IconComponent = (props) => (
   <svg
     width="28"
     height="28"
     viewBox="0 0 28 28"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    onClick={onClick}
-    className={className}
+    {...props}
   >
     <path
       fillRule="evenodd"

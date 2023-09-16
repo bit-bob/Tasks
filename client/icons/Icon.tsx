@@ -7,6 +7,8 @@ import { CircleChecked } from "./CircleChecked";
 import { PauseFill } from "./PauseFill";
 import { PlayFill } from "./PlayFill";
 
+export type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
 export const ICON_MAP = {
   "chevron.down": ChevronDown,
   "chevron.right": ChevronRight,
@@ -23,6 +25,6 @@ export interface IconProps {
 }
 
 export const Icon = ({ type, onClick, className }: IconProps) => {
-  const IconComponent = ICON_MAP[type];
-  return <IconComponent className={className} onClick={onClick} />;
+  const Component = ICON_MAP[type];
+  return <Component className={className} onClick={onClick} />;
 };

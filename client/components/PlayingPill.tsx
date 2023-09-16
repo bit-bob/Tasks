@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import {
   green300,
   green300Lighter,
   slate100,
   slate100Lighter,
+  animateOptions,
 } from "../constants";
 import { Icon } from "../icons/Icon";
 
@@ -29,16 +31,10 @@ const Pill = styled.div<{ playing: boolean; started: boolean }>`
   &:active {
     transform: scale(0.95);
   }
+`;
 
-  & > span {
-    transition: all 100ms ease-in-out;
-    opacity: ${(props) => (props.started || props.playing ? 1 : 0)};
-
-    overflow-x: hidden;
-
-    ${(props) =>
-      !(props.started || props.playing) && `margin-left: -6px; width: 0px;`}
-  }
+const IconContainer = styled.div`
+  height: 20px;
 `;
 
 export interface PlayingPillProps {
@@ -52,10 +48,18 @@ export const PlayingPill = ({
   playing,
   onPlayPause,
 }: PlayingPillProps) => {
+  const [animationParent] = useAutoAnimate(animateOptions);
   return (
-    <Pill started={started} playing={playing} onClick={onPlayPause}>
-      <Icon type={playing ? "pause.fill" : "play.fill"} />
-      <span>12:14:01</span>
+    <Pill
+      ref={animationParent}
+      started={started}
+      playing={playing}
+      onClick={onPlayPause}
+    >
+      <IconContainer>
+        <Icon type={playing ? "pause.fill" : "play.fill"} />
+      </IconContainer>
+      {(started || playing) && <span>12:14:01</span>}
     </Pill>
   );
 };

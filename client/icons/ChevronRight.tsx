@@ -1,14 +1,15 @@
 import React from "react";
 
-export const ChevronRight = ({ onClick, className }) => (
+import { IconComponent } from "./Icon";
+
+export const ChevronRight: IconComponent = (props) => (
   <svg
     width="28"
     height="28"
     viewBox="0 0 28 28"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    onClick={onClick}
-    className={className}
+    {...props}
   >
     <path
       d="M18.4868 14C18.478 13.6924 18.3638 13.4287 18.1265 13.1914L11.2886 6.50293C11.0864 6.30957 10.8491 6.2041 10.5591 6.2041C9.97021 6.2041 9.51318 6.66113 9.51318 7.25C9.51318 7.53125 9.62744 7.79492 9.82959 7.99707L15.9819 14L9.82959 20.0029C9.62744 20.2051 9.51318 20.46 9.51318 20.75C9.51318 21.3389 9.97021 21.7959 10.5591 21.7959C10.8403 21.7959 11.0864 21.6904 11.2886 21.4971L18.1265 14.7998C18.3726 14.5713 18.4868 14.3076 18.4868 14Z"
