@@ -23,6 +23,7 @@ export const AppHeaderTitle = styled.h1`
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.333px;
+  text-transform: capitalize;
 `;
 
 export interface AppHeaderProps {
