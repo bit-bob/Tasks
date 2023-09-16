@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+import {
+  slate100,
+  slate300,
+  indigo100,
+  indigo300,
+  indigo700,
+} from "../constants";
+
 export interface ButtonProps {
   variant?: "primary" | "default";
   disabled?: boolean;
@@ -13,17 +21,17 @@ export const Button = styled.button<ButtonProps>`
   color: ${(props) => {
     switch (props.variant) {
       case "primary":
-        return props.disabled ? "#BEAFE9" : "#EFECFB";
+        return props.disabled ? indigo300 : indigo100;
       default:
-        return props.disabled ? "#d6d5d9" : "#343334";
+        return props.disabled ? slate300 : slate100;
     }
   }};
   background-color: ${(props) => {
     switch (props.variant) {
       case "primary":
-        return props.disabled ? "#DDD5F6" : "#653FD7";
+        return props.disabled ? indigo100 : indigo700;
       default:
-        return "#e4e2e8";
+        return slate300;
     }
   }};
   font-size: 14px;

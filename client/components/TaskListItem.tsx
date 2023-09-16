@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TaskModel } from "../../api-types/models/TaskModel";
 
 import { Icon } from "../icons/Icon";
-import { blackFaded } from "../constants";
+import { slate50, blackFaded } from "../constants";
 
 import { InlineEdit } from "./InlineEdit";
 
@@ -17,9 +17,10 @@ const Container = styled.div`
   border-radius: 4px;
   cursor: pointer;
   padding: 4px;
+  gap: 5px;
 
   &:hover {
-    background-color: #f8f8f8;
+    background-color: ${slate50};
   }
 `;
 
@@ -30,6 +31,7 @@ const Text = styled.span`
   font-weight: 300;
   line-height: normal;
   letter-spacing: -0.333px;
+  flex-grow: 1;
 ]`;
 
 const TextComplete = styled(Text)`

@@ -8,16 +8,24 @@ import React, {
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
 
+import { slate300 } from "../constants";
+
 import { Button } from "./Button";
 
 const Container = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+  gap: 18px;
 `;
 
 const Actions = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
+  position: relative;
+  flex-direction: row;
+  display: flex;
+  gap: 5px;
 `;
 
 const InlineEditInput = styled(TextareaAutosize)`
@@ -30,10 +38,9 @@ const InlineEditInput = styled(TextareaAutosize)`
   font-size: inherit;
   font-weight: inherit;
   border: none;
-  padding: 6px;
-  margin: 4px 6px 10px -6px;
   border-radius: 4px;
-  background-color: #d6d5d9;
+  background-color: ${slate300};
+  padding: 7px 6px;
   &:read-only {
     cursor: text;
     &:not(:hover) {
@@ -58,7 +65,6 @@ const Heading = styled.h2`
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 24px;
-  margin: 8px 0 14px 0;
 `;
 
 export const InlineEdit = ({
