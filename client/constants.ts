@@ -2,6 +2,8 @@ import { AutoAnimateOptions } from "@formkit/auto-animate";
 
 export const transparentColour = "rgba(0, 0, 0, 0.01)";
 
+export const white = "#FFF";
+
 export const slate50 = "rgb(248 250 252)";
 export const slate100 = "rgb(241 245 249)";
 export const slate100Lighter = "#F1F6FB";
@@ -11,6 +13,8 @@ export const slate900 = "rgb(15 23 42)";
 export const green300 = "rgb(187 247 208)";
 export const green300Lighter = "#C0F5D3";
 
+export const rose50 = "#fff1f2";
+export const rose400 = "#fb7185";
 export const rose600 = "rgb(225 29 72)";
 export const rose700 = "rgb(190 18 60)";
 export const rose700Lighter = "#C71440";
