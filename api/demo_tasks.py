@@ -101,6 +101,22 @@ demo_tasks_info = [
         'Local DB for offline use',
         None,
     ),
+    (
+        'consider using elasticsearch for read heavy parts of the code',
+        None,
+    ),
+    (
+        'consider using a graph database for relationship heavy parts of the code',
+        None,
+    ),
+    (
+        'read about using recursive queries for relationship heavy parts of the code https://www.postgresql.org/docs/current/queries-with.html',
+        None,
+    ),
+    (
+        'read about using ltree for hierarchy heavy parts of the code https://www.postgresql.org/docs/current/ltree.html',
+        None,
+    ),
 ]
 
 demo_tasks = TaskList()
