@@ -1,0 +1,19 @@
+{
+  "name": "components",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "prettier:fix": "prettier . --write",
+    "prettier:check": "prettier . --check"
+  },
+  "devDependencies": {
+    "prettier": "3.0.3"
+  },
+  "dependencies": {
+    "icons": "*",
+    "api-types": "*",
+    "@fontsource/azeret-mono": "^5.0.12",
+    "@fontsource/comfortaa": "^5.0.12",
+    "@formkit/auto-animate": "^0.8.0"
+  }
+}

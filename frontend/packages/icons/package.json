@@ -1,0 +1,12 @@
+{
+  "name": "icons",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "prettier:fix": "prettier . --write",
+    "prettier:check": "prettier . --check"
+  },
+  "devDependencies": {
+    "prettier": "3.0.3"
+  }
+}

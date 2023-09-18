@@ -20,7 +20,7 @@ export class TasksService {
     public static getTasks(): CancelablePromise<GetTasksResponse> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/tasks',
+            url: '/tasks/',
         });
     }
 
@@ -35,7 +35,7 @@ export class TasksService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/tasks/update',
+            url: '/tasks/update',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -55,7 +55,7 @@ export class TasksService {
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/tasks/complete',
+            url: '/tasks/complete',
             body: requestBody,
             mediaType: 'application/json',
             errors: {

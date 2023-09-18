@@ -11,7 +11,7 @@ import {
   rose400,
   rose700,
   slate900,
-} from "../constants";
+} from "./constants";
 
 export interface ButtonProps {
   variant?: "primary" | "danger" | "default";

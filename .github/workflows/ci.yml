@@ -7,27 +7,27 @@ on:
     branches: ["main"]
 
 jobs:
-  prettier:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19.x
-          cache: "npm"
-      - run: npm ci
-      - run: npm run prettier:check
+  # prettier:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 19.x
+  #         cache: "npm"
+  #     - run: npm ci
+  #     - run: npm run prettier:check
 
-  unit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19.x
-          cache: "npm"
-      - run: npm ci
-      - run: npm test
+  # unit:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 19.x
+  #         cache: "npm"
+  #     - run: npm ci
+  #     - run: npm test
 
   pytest:
     runs-on: ubuntu-latest

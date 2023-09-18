@@ -8,8 +8,8 @@ import {
   slate100,
   slate100Lighter,
   animateOptions,
-} from "../constants";
-import { Icon } from "../icons/Icon";
+} from "./constants";
+import { Icon } from "icons/Icon";
 
 const Pill = styled.div<{ playing: boolean; started: boolean }>`
   display: inline-flex;

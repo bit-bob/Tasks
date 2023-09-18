@@ -21,19 +21,15 @@ openapi:
 	npm run generate-client
 
 pretty:
-	npm run prettier:fix
+	npx nx run-many -t prettier:fix
 
-clean:
-	.venv/bin/python api/gen_openapi.py openapi.json
-	npm run generate-client
-	npm run prettier:fix
+pytest:
 	.venv/bin/pytest
 
-test:
-	.venv/bin/pytest
+clean: openapi pretty pytest
 
 storybook:
-	npm run storybook
+	npx nx run components:storybook
 
 run:
-	./cxy.sh -fastapi ".venv/bin/python api/main.py" -client "npm run dev"
+	./cxy.sh -fastapi ".venv/bin/python api/main.py"

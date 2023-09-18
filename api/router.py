@@ -10,7 +10,7 @@ from demo_tasks import demo_tasks
 
 # App
 router = APIRouter(
-    prefix="/api",
+    prefix="/tasks",
     tags=["tasks"],
 )
 
@@ -21,7 +21,7 @@ class GetTasksResponse(BaseModel):
     tasks: List[TaskModel]
 
 
-@router.get("/tasks")
+@router.get("/")
 async def get_tasks() -> GetTasksResponse:
     return GetTasksResponse(
         tasks=[TaskModel(
@@ -38,7 +38,7 @@ class UpdateTaskRequest(BaseModel):
     name: str
 
 
-@router.post("/tasks/update")
+@router.post("/update")
 async def update_task(
     request: UpdateTaskRequest,
 ) -> None:
@@ -53,7 +53,7 @@ class ToggleTaskCompleteRequest(BaseModel):
     completed: Optional[datetime]
 
 
-@router.post("/tasks/complete")
+@router.post("/complete")
 async def toggle_task_complete(
     request: ToggleTaskCompleteRequest,
 ) -> None:

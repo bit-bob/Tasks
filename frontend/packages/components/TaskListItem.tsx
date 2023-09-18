@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { TaskModel } from "../../api-types/models/TaskModel";
+import { TaskModel } from "api-types/models/TaskModel";
 
-import { IconButton } from "../icons/Icon";
-import { slate100, blackFaded } from "../constants";
+import { IconButton } from "icons/Icon";
+import { slate100, blackFaded } from "./constants";
 
-const Container = styled.div<{ hasFocus: boolean }>`
+const Container = styled("div").withConfig({
+  shouldForwardProp(prop) {
+    return !["hasFocus"].includes(prop);
+  },
+})<{ hasFocus: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +43,11 @@ const Container = styled.div<{ hasFocus: boolean }>`
   `}
 `;
 
-const Text = styled.input<{ isCompleted: boolean }>`
+const Text = styled("input").withConfig({
+  shouldForwardProp(prop) {
+    return !["isCompleted"].includes(prop);
+  },
+})<{ isCompleted: boolean }>`
   font-family: Comfortaa;
   font-size: 15px;
   font-style: normal;
