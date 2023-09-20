@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { DeleteTaskRequest } from '../models/DeleteTaskRequest';
 import type { GetTasksResponse } from '../models/GetTasksResponse';
 import type { ToggleTaskCompleteRequest } from '../models/ToggleTaskCompleteRequest';
 import type { UpdateTaskRequest } from '../models/UpdateTaskRequest';
@@ -56,6 +57,26 @@ export class TasksService {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/tasks/complete',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Delete Task
+     * @param requestBody
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static deleteTask(
+        requestBody: DeleteTaskRequest,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/tasks/delete',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
