@@ -61,3 +61,15 @@ async def toggle_task_complete(
     if task is None:
         raise Exception
     task.completed = request.completed
+
+
+# Delete
+class DeleteTaskRequest(BaseModel):
+    task_id: UUID
+
+
+@router.post("/tasks/delete")
+async def delete_task(
+    request: DeleteTaskRequest,
+) -> None:
+    demo_tasks.delete_task(request.task_id)

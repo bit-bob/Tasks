@@ -67,3 +67,10 @@ class TaskList():
                     return task
         except IndexError:
             return
+
+    # Delete
+    def delete_task(
+        self,
+        task_id: UUID,
+    ) -> None:
+        self.tasks = [t for t in self.tasks if t.id != task_id]

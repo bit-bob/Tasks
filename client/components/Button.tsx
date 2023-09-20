@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 import {
-  white,
-  slate100,
+  slate200,
   slate300,
-  indigo100,
+  slate800,
+  indigo200,
   indigo300,
-  indigo700,
-  rose50,
-  rose400,
-  rose700,
-  slate900,
+  indigo800,
+  rose200,
+  rose300,
+  rose800,
 } from "../constants";
 
 export interface ButtonProps {
@@ -31,22 +30,22 @@ export const Button = styled.button<ButtonProps>`
   color: ${(props) => {
     switch (props.variant) {
       case "primary":
-        return props.disabled ? indigo300 : indigo100;
+        return props.disabled ? indigo300 : indigo200;
       case "danger":
-        return props.disabled ? rose50 : white;
+        return props.disabled ? rose300 : rose200;
       default:
-        return props.disabled ? slate300 : slate100;
+        return props.disabled ? slate300 : slate200;
     }
   }};
 
   background-color: ${(props) => {
     switch (props.variant) {
       case "primary":
-        return props.disabled ? indigo100 : indigo700;
+        return props.disabled ? indigo200 : indigo800;
       case "danger":
-        return props.disabled ? rose400 : rose700;
+        return props.disabled ? rose200 : rose800;
       default:
-        return slate900;
+        return props.disabled ? slate200 : slate800;
     }
   }};
 

@@ -16,12 +16,14 @@ const List = styled.div`
 export interface TaskListProps {
   tasks: TaskModel[];
   onToggleComplete?: (task: TaskModel) => void;
+  onDelete?: (task: TaskModel) => void;
   onEditTaskTitle?: (task: TaskModel, newTitle: string) => void;
 }
 
 export const TaskList = ({
   tasks,
   onToggleComplete,
+  onDelete,
   onEditTaskTitle,
 }: TaskListProps) => {
   const [animationParent] = useAutoAnimate();
@@ -30,6 +32,7 @@ export const TaskList = ({
       {tasks.map((task) => (
         <TaskListItem
           onToggleComplete={() => onToggleComplete?.(task)}
+          onDelete={() => onDelete?.(task)}
           onEdit={(newName) => onEditTaskTitle?.(task, newName)}
           key={task.id}
           task={task}

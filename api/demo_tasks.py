@@ -67,11 +67,11 @@ demo_tasks_info = [
     ),
     (
         'Delete Tasks - back end - endpoints',
-        None,
+        datetime(2023, 9, 20, 11, 53, tzinfo=timezone.utc),
     ),
     (
         'Delete Tasks - front end - full implementation',
-        None,
+        datetime(2023, 9, 20, 11, 53, tzinfo=timezone.utc),
     ),
     (
         'Persisting Tasks',
@@ -99,6 +99,22 @@ demo_tasks_info = [
     ),
     (
         'Local DB for offline use',
+        None,
+    ),
+    (
+        'consider using elasticsearch for read heavy parts of the code',
+        None,
+    ),
+    (
+        'consider using a graph database for relationship heavy parts of the code',
+        None,
+    ),
+    (
+        'read about using recursive queries for relationship heavy parts of the code https://www.postgresql.org/docs/current/queries-with.html',
+        None,
+    ),
+    (
+        'read about using ltree for hierarchy heavy parts of the code https://www.postgresql.org/docs/current/ltree.html',
         None,
     ),
 ]
