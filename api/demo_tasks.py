@@ -67,11 +67,11 @@ demo_tasks_info = [
     ),
     (
         'Delete Tasks - back end - endpoints',
-        None,
+        datetime(2023, 9, 20, 11, 53, tzinfo=timezone.utc),
     ),
     (
         'Delete Tasks - front end - full implementation',
-        None,
+        datetime(2023, 9, 20, 11, 53, tzinfo=timezone.utc),
     ),
     (
         'Persisting Tasks',
