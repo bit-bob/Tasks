@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { transparentColour, slate100, rose800 } from "../constants";
+import { transparent, slate100, rose800 } from "../constants";
 
 const Bar = styled.progress`
   width: 100%;
@@ -10,7 +10,7 @@ const Bar = styled.progress`
   This exists only to break out of the default style
   without actually adding a visible background 
   */
-  background-color: ${transparentColour};
+  background-color: ${transparent};
 
   &::-webkit-progress-bar {
     background-color: ${slate100};

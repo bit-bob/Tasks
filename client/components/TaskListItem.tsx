@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TaskModel } from "../../api-types/models/TaskModel";
 
 import { IconButton } from "../icons/Icon";
-import { slate100, blackFaded } from "../constants";
+import { slate100, blackTransparent } from "../constants";
 
 const Container = styled.div<{ hasFocus: boolean }>`
   display: flex;
@@ -55,7 +55,7 @@ const Text = styled.input<{ isCompleted: boolean }>`
   width: auto;
   outline: none;
 
-  ${(props) => props.isCompleted && `color: ${blackFaded}`}
+  ${(props) => props.isCompleted && `color: ${blackTransparent}`}
 `;
 
 export interface TaskListItemProps {
