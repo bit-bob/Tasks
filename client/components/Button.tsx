@@ -3,15 +3,12 @@ import styled from "styled-components";
 import {
   slate200,
   slate300,
-  slate600,
   slate800,
   indigo200,
   indigo300,
-  indigo600,
   indigo800,
   rose200,
   rose300,
-  rose600,
   rose800,
 } from "../constants";
 

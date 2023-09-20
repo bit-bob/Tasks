@@ -55,6 +55,14 @@ export const App = () => {
               .then((response) => response.tasks)
               .then(setTasks);
           }}
+          onDelete={(task) => {
+            TasksService.deleteTask({
+              task_id: task.id,
+            })
+              .then(TasksService.getTasks)
+              .then((response) => response.tasks)
+              .then(setTasks);
+          }}
           tasks={tasks}
         />
       )}
