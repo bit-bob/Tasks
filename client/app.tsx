@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { GlobalStyles } from "./GlobalStyles";
 import styled from "styled-components";
+import { throttle } from "lodash";
 
 import { AppHeader } from "./components/AppHeader";
 import { TaskList } from "./components/TaskList";
@@ -37,6 +38,16 @@ export const App = () => {
       cancel = true;
     };
   }, []);
+
+  const editTaskTitle = (task: TaskModel, newTitle: string) => {
+    TasksService.updateTask({
+      task_id: task.id,
+      name: newTitle,
+    });
+  };
+
+  // calls editTaskTitle every 2s with the latest changes
+  const editTaskTitleThrottled = useCallback(throttle(editTaskTitle, 2000), []);
 
   return (
     <Container>
@@ -75,6 +86,7 @@ export const App = () => {
                 };
               }),
             );
+            editTaskTitleThrottled(task, newTitle);
           }}
           tasks={tasks}
         />
