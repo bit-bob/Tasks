@@ -63,6 +63,19 @@ export const App = () => {
               .then((response) => response.tasks)
               .then(setTasks);
           }}
+          onEditTaskTitle={(task, newTitle) => {
+            setTasks(
+              tasks.map((t) => {
+                if (task.id !== t.id) {
+                  return t;
+                }
+                return {
+                  ...t,
+                  name: newTitle,
+                };
+              }),
+            );
+          }}
           tasks={tasks}
         />
       )}
