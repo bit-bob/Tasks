@@ -27,7 +27,7 @@ jobs:
           node-version: 18.18
           cache: "npm"
       - run: npm ci
-      - run: npm nx run-many -t test
+      - run: npx nx run-many -t test
 
   pytest:
     runs-on: ubuntu-latest
