@@ -21,7 +21,7 @@ export const taskList: Story = {
       {
         id: "1",
         name: "Feed Fishes",
-        completed: "2023-09-13T12:14:15Z",
+        completed: new Date("2023-09-13T12:14:15Z"),
       },
       {
         id: "2",

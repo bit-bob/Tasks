@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import { TaskModel } from "../../api-types/models/TaskModel";
+import { TaskModel } from "api";
 
 import { TaskListItem } from "./TaskListItem";
 

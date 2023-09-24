@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { TaskModel } from "../../api-types/models/TaskModel";
+import { TaskModel } from "api";
 
 import { IconButton } from "../icons/Icon";
 import { slate100, blackTransparent } from "../constants";
