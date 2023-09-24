@@ -1,11 +1,9 @@
 import {
   TasksApi,
   TaskModel,
-  GetTasksResponseToJSON,
-  GetTasksResponseFromJSONTyped,
   Configuration,
 } from "api";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { AppHeader } from "../components/AppHeader";
 import { TaskList } from "../components/TaskList";
 import { GlobalStyles } from "../GlobalStyles";
@@ -21,26 +19,14 @@ const Container = styled.div`
   gap: 4px;
 `;
 
-interface HomeProps {
-  initialTasks: any;
-}
-export async function getServerSideProps(): Promise<{ props: HomeProps }> {
-  return {
-    props: {
-      initialTasks: GetTasksResponseToJSON(await TasksService.getTasks()),
-    },
-  };
-}
+export default function Home() {
+  const [tasks, setTasks] = useState<TaskModel[] | null>(null)
 
-export default function Home({ initialTasks }: HomeProps) {
-  const [tasks, setTasks] = useState(
-    GetTasksResponseFromJSONTyped(initialTasks, false).tasks
-  );
+  const refresh = () => TasksService.getTasks().then(response => response.tasks).then(setTasks)
 
-  const refresh = async () =>
-    await TasksService.getTasks()
-      .then(({ tasks }) => tasks)
-      .then(setTasks);
+  useEffect(() => {
+    refresh()
+  }, [])
 
   const editTaskTitle = (task: TaskModel, newTitle: string) => {
     TasksService.updateTask({
@@ -48,7 +34,7 @@ export default function Home({ initialTasks }: HomeProps) {
         taskId: task.id,
         name: newTitle,
       },
-    });
+    }).then(refresh);
   };
 
   // calls editTaskTitle every 2s with the latest changes
@@ -58,8 +44,8 @@ export default function Home({ initialTasks }: HomeProps) {
     <Container>
       <GlobalStyles />
       <AppHeader title="Tasks" />
-      {tasks === null ? (
-        "loading..."
+      {!tasks ? (
+        "Loading..."
       ) : (
         <TaskList
           onToggleComplete={(task) => {
@@ -79,17 +65,15 @@ export default function Home({ initialTasks }: HomeProps) {
             }).then(refresh);
           }}
           onEditTaskTitle={(task, newTitle) => {
-            setTasks(
-              tasks.map((t) => {
-                if (task.id !== t.id) {
-                  return t;
-                }
-                return {
-                  ...t,
-                  name: newTitle,
-                };
-              })
-            );
+            setTasks(tasks.map((t) => {
+              if (task.id !== t.id) {
+                return t;
+              }
+              return {
+                ...t,
+                name: newTitle,
+              };
+            }))
             editTaskTitleThrottled(task, newTitle);
           }}
           tasks={tasks}
