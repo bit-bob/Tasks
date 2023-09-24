@@ -9,6 +9,7 @@ import { TaskList } from "../components/TaskList";
 import { GlobalStyles } from "../GlobalStyles";
 import { throttle } from "lodash";
 import styled from "styled-components";
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 const config = new Configuration({ basePath: "http://localhost:8000" });
 const TasksService = new TasksApi(config);
@@ -48,13 +49,15 @@ export default function Home() {
         "Loading..."
       ) : (
         <TaskList
-          onToggleComplete={(task) => {
-            TasksService.toggleTaskComplete({
+          onToggleComplete={async (task) => {
+            await Haptics.impact({ style: ImpactStyle.Medium });
+            await TasksService.toggleTaskComplete({
               toggleTaskCompleteRequest: {
                 taskId: task.id,
                 completed: task.completed ? null : new Date(),
               },
-            }).then(refresh);
+            });
+            await refresh();
           }}
           onDelete={(task) => {
             console.log(task);

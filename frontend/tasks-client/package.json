@@ -14,6 +14,7 @@
   "dependencies": {
     "@capacitor/android": "^5.4.1",
     "@capacitor/core": "^5.4.1",
+    "@capacitor/haptics": "^5.0.6",
     "@capacitor/ios": "^5.4.1",
     "@fontsource/azeret-mono": "^5.0.12",
     "@fontsource/comfortaa": "^5.0.12",
