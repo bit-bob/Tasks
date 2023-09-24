@@ -2,6 +2,7 @@
   "name": "tasks-workspace",
   "private": true,
   "scripts": {
+    "test": "npx nx run-many -t test",
     "generate-client": "openapi-generator-cli generate -i ./openapi.json -g typescript-fetch -o ./frontend/packages/api"
   },
   "workspaces": [
