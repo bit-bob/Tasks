@@ -10,7 +10,7 @@ from demo_tasks import demo_tasks
 
 # App
 router = APIRouter(
-    prefix="/api",
+    prefix="",
     tags=["tasks"],
 )
 
