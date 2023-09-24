@@ -1,6 +1,6 @@
 from tasks import Task, TaskList
 from datetime import datetime, timezone
-from demo_tasks_personal import demo_tasks_personal_info
+# from demo_tasks_personal import demo_tasks_personal_info
 
 
 def populate_demo_tasks(task_list, info):
@@ -121,4 +121,4 @@ demo_tasks_info = [
 
 demo_tasks = TaskList()
 populate_demo_tasks(demo_tasks, demo_tasks_info)
-populate_demo_tasks(demo_tasks, demo_tasks_personal_info)
+# populate_demo_tasks(demo_tasks, demo_tasks_personal_info)

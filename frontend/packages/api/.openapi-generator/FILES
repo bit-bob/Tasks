@@ -1,0 +1,14 @@
+.openapi-generator-ignore
+apis/TasksApi.ts
+apis/index.ts
+index.ts
+models/DeleteTaskRequest.ts
+models/GetTasksResponse.ts
+models/HTTPValidationError.ts
+models/TaskModel.ts
+models/ToggleTaskCompleteRequest.ts
+models/UpdateTaskRequest.ts
+models/ValidationError.ts
+models/ValidationErrorLocInner.ts
+models/index.ts
+runtime.ts
