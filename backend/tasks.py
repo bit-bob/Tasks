@@ -48,6 +48,12 @@ class TaskList():
     ):
         self.tasks.append(task)
 
+    def create_task(
+        self,
+        name: str,
+    ):
+        self.tasks.append(Task(name))
+
     # Read
     def get_tasks(
         self,
