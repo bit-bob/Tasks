@@ -1,4 +1,4 @@
-package com.example.app;
+package dev.lukeharris.tasks;
 
 import com.getcapacitor.BridgeActivity;
 
