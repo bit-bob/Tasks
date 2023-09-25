@@ -26,7 +26,9 @@ pretty:
 pytest:
 	.venv/bin/pytest
 
-clean: openapi pretty pytest
+test: pytest
+
+clean: openapi pretty test
 
 storybook:
 	npx nx storybook tasks-client
