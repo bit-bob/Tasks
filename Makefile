@@ -17,7 +17,7 @@ install:
 	npm install
 
 openapi:
-	.venv/bin/python api/gen_openapi.py openapi.json
+	.venv/bin/python backend/gen_openapi.py openapi.json
 	openapi-generator generate -i ./openapi.json -g typescript-fetch -o ./frontend/packages/api
 
 pretty:
@@ -34,4 +34,4 @@ storybook:
 	npx nx storybook tasks-client
 
 run:
-	./cxy.sh -fastapi ".venv/bin/python api/main.py" -client "npx nx dev tasks-client"
+	./cxy.sh -fastapi ".venv/bin/python backend/main.py" -client "npx nx dev tasks-client"
