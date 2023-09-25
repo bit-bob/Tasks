@@ -1,4 +1,4 @@
-name: Client CI
+name: CI
 
 on:
   push:
@@ -50,3 +50,20 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
       - run: black backend
+
+  capacitor-sync:
+    needs: [unit, prettier]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.18
+    - name: Install Dependencies
+      run: npm install
+    - name: Update Capacitor
+      run: npx nx cap:update tasks-client
+    - name: Capacitor Sync
+      run: npx nx cap:sync tasks-client
