@@ -60,9 +60,7 @@ jobs:
       with:
         node-version: 18.18
         cache: "npm"
-    - name: Install Dependencies
-      run: npm install
-    - name: Update Capacitor
-      run: npx nx cap:update tasks-client
-    - name: Capacitor Sync
-      run: npx nx cap:sync tasks-client
+    - run: npm install
+    - run: npx nx export tasks-client
+    - run: npx nx cap:update tasks-client
+    - run: npx nx cap:sync tasks-client
