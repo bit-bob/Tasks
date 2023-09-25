@@ -3,8 +3,7 @@ from typing import List, Optional
 from uuid import UUID, uuid4
 
 
-class Task():
-
+class Task:
     def __init__(
         self,
         name: str,
@@ -18,9 +17,13 @@ class Task():
     def __str__(self) -> str:
         return f"Task {self.id}: {self.name}{' (complete)' if self.completed else ''}"
 
-    def __lt__(self, other: 'Task'):
-
-        if (self.completed is None and other.completed is None) or (self.completed == other.completed):
+    def __lt__(
+        self,
+        other: "Task",
+    ):
+        if (self.completed is None and other.completed is None) or (
+            self.completed == other.completed
+        ):
             # if both are incomplete or completed at the same time, check created timestamp
             return self.created < other.created
 
@@ -36,8 +39,7 @@ class Task():
         return self.completed < other.completed
 
 
-class TaskList():
-
+class TaskList:
     def __init__(self):
         self.tasks = []
 

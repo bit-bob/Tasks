@@ -36,11 +36,14 @@ class GetTasksResponse(BaseModel):
 @router.get("/tasks")
 async def get_tasks() -> GetTasksResponse:
     return GetTasksResponse(
-        tasks=[TaskModel(
-            id=t.id,
-            name=t.name,
-            completed=t.completed,
-        ) for t in demo_tasks.get_tasks()],
+        tasks=[
+            TaskModel(
+                id=t.id,
+                name=t.name,
+                completed=t.completed,
+            )
+            for t in demo_tasks.get_tasks()
+        ],
     )
 
 

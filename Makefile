@@ -22,6 +22,7 @@ openapi:
 
 pretty:
 	npx nx run-many -t prettier:fix
+	.venv/bin/black backend
 
 pytest:
 	.venv/bin/pytest
