@@ -20,6 +20,7 @@
     "@capacitor/core": "^5.4.1",
     "@capacitor/haptics": "^5.0.6",
     "@capacitor/ios": "^5.4.1",
+    "@capacitor/status-bar": "^5.0.6",
     "@fontsource/azeret-mono": "^5.0.12",
     "@fontsource/comfortaa": "^5.0.12",
     "@formkit/auto-animate": "^0.8.0",
