@@ -25,3 +25,4 @@ jobs:
         distribution: temurin
         java-version: 17
     - run: frontend/tasks-client/android/gradlew -p frontend/tasks-client/android assembleDebug
+    - run: find . -name '*.apk'
