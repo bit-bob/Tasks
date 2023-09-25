@@ -14,8 +14,12 @@ source .venv/bin/activate
 
 ## Installing Requirements
 
-This installs the python and nmp packages
+### First Time Installation
+```
+brew install openapi-generator
+```
 
+### Regular Installation
 ```
 make install
 ```
@@ -34,11 +38,11 @@ make run
 
 ## Using the app
 
-[Local App](http://localhost:8000/)
+[Local App](http://localhost:3000/)
 
 ## Using the API
 
-[Local API Access](http://localhost:8000/docs)
+[Local API Access](http://localhost:3000/docs)
 
 ## Running the tests
 

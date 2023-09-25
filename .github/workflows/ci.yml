@@ -16,7 +16,7 @@ jobs:
           node-version: 18.18
           cache: "npm"
       - run: npm ci
-      - run: npm run prettier:check
+      - run: npx nx run-many -t prettier:check
 
   unit:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
           node-version: 18.18
           cache: "npm"
       - run: npm ci
-      - run: npm test
+      - run: npx nx run-many -t test
 
   pytest:
     runs-on: ubuntu-latest
