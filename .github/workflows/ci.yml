@@ -62,5 +62,5 @@ jobs:
         cache: "npm"
     - run: npm install
     - run: npx nx export tasks-client
-    - run: npx nx cap:update tasks-client
     - run: npx nx cap:sync tasks-client
+    - run: npx nx cap:update tasks-client
