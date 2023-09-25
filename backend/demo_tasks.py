@@ -76,10 +76,13 @@ demo_tasks_info_complete = [
         'Create Tasks - back end - endpoints',
         datetime(2023, 9, 25, 16, 50, tzinfo=timezone.utc),
     ),
+    (
+        'Create Tasks - front end - full implementation',
+        datetime(2023, 9, 25, 17, 38, tzinfo=timezone.utc),
+    ),
 ]
 
 demo_tasks_info_incomplete = [
-    'Create Tasks - front end - full implementation',
     'Persisting Tasks',
     'front end - reusable components - front end - date picker',
     'front end - reusable components - front end - task picker',
