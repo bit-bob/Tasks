@@ -1,0 +1,29 @@
+name: Capacitor Sync
+
+on:
+  workflow_run:
+    workflows: ["Client CI"]
+    types:
+      - completed
+
+jobs:
+  capacitor-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.18
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Update Capacitor
+      run: npx nx cap:update tasks-client
+
+    - name: Capacitor Sync
+      run: npx nx cap:sync tasks-client

@@ -34,5 +34,8 @@ clean: openapi pretty test
 storybook:
 	npx nx storybook tasks-client
 
+apk:
+	frontend/tasks-client/android/gradlew -p frontend/tasks-client/android assembleDebug
+
 run:
 	./cxy.sh -fastapi ".venv/bin/python backend/main.py" -client "npx nx dev tasks-client"
