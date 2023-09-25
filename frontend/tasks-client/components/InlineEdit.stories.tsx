@@ -4,7 +4,7 @@ import { InlineEdit } from "./InlineEdit";
 
 const meta: Meta<typeof InlineEdit> = {
   component: InlineEdit,
-  tags: ['autodocs']
+  tags: ["autodocs"],
 };
 
 export default meta;

@@ -1,14 +1,14 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'dev.lukeharris.tasks',
-  appName: 'Tasks',
-  webDir: 'out',
+  appId: "dev.lukeharris.tasks",
+  appName: "Tasks",
+  webDir: "out",
   server: {
-    androidScheme: 'http'
+    androidScheme: "http",
   },
   android: {
-    allowMixedContent: true
+    allowMixedContent: true,
   },
 };
 

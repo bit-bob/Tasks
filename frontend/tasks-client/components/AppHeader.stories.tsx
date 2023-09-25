@@ -8,7 +8,7 @@ import { Button } from "./Button";
 
 const meta: Meta<typeof AppHeader> = {
   component: AppHeader,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
