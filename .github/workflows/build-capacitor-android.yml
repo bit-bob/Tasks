@@ -20,7 +20,8 @@ jobs:
     - run: npx nx cap:sync tasks-client
     - run: npx nx cap:update tasks-client
     - run: npx nx cap:update tasks-client
-    - uses: actions/setup-java@v2
+    - uses: actions/setup-java@v3
       with:
-        java-version: 11
+        distribution: temurin
+        java-version: 17
     - run: frontend/tasks-client/android/gradlew -p frontend/tasks-client/android assembleDebug
