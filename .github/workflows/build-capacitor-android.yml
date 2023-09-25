@@ -2,30 +2,26 @@ name: Build Capacitor Android App
 
 on:
   workflow_run:
-    workflows: ["Capacitor Sync"]
+    workflows: ["Lint & Test"]
     types:
       - completed
 
 jobs:
   build:
+    needs: [unit, prettier]
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: 14
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Set up JDK
-      uses: actions/setup-java@v2
+        node-version: 18.18
+        cache: "npm"
+    - run: npm install
+    - run: npx nx export tasks-client
+    - run: npx nx cap:sync tasks-client
+    - run: npx nx cap:update tasks-client
+    - run: npx nx cap:update tasks-client
+    - uses: actions/setup-java@v2
       with:
         java-version: 11
-
-    - name: Build Android App
-      run: 	frontend/tasks-client/android/gradlew -p frontend/tasks-client/android assembleDebug
+    - run: frontend/tasks-client/android/gradlew -p frontend/tasks-client/android assembleDebug

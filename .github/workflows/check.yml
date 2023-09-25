@@ -1,4 +1,4 @@
-name: CI
+name: Lint & Test
 
 on:
   push:
@@ -50,17 +50,3 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
       - run: black backend
-
-  capacitor-sync:
-    needs: [unit, prettier]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18.18
-        cache: "npm"
-    - run: npm install
-    - run: npx nx export tasks-client
-    - run: npx nx cap:sync tasks-client
-    - run: npx nx cap:update tasks-client
