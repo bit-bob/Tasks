@@ -1,6 +1,7 @@
 import { TasksApi, TaskModel, Configuration } from "api";
 import { useState, useCallback, useEffect } from "react";
 import { AppHeader } from "../components/AppHeader";
+import { Button } from "../components/Button";
 import { TaskList } from "../components/TaskList";
 import { GlobalStyles } from "../GlobalStyles";
 import { throttle } from "lodash";
@@ -44,7 +45,24 @@ export default function Home() {
   return (
     <Container>
       <GlobalStyles />
-      <AppHeader title="Tasks" />
+      <AppHeader
+        title="Tasks"
+        actions={
+          <Button
+            variant="default"
+            onClick={async () => {
+              await TasksService.createTask({
+                createTaskRequest: {
+                  name: "Unnamed Task",
+                },
+              });
+              await refresh();
+            }}
+          >
+            Add Task
+          </Button>
+        }
+      />
       {!tasks ? (
         "Loading..."
       ) : (
