@@ -19,22 +19,23 @@ const Container = styled.div`
 export default function Home() {
   const [tasks, setTasks] = useState<TaskModel[] | null>(null);
 
-  const refresh = () =>
-    TasksService.getTasks()
-      .then((response) => response.tasks)
-      .then(setTasks);
+  const refresh = async () => {
+    const response = await TasksService.getTasks();
+    setTasks(response.tasks);
+  };
 
   useEffect(() => {
     refresh();
   }, []);
 
-  const editTaskTitle = (task: TaskModel, newTitle: string) => {
-    TasksService.updateTask({
+  const editTaskTitle = async (task: TaskModel, newTitle: string) => {
+    await TasksService.updateTask({
       updateTaskRequest: {
         taskId: task.id,
         name: newTitle,
       },
-    }).then(refresh);
+    });
+    await refresh();
   };
 
   // calls editTaskTitle every 2s with the latest changes
@@ -58,13 +59,13 @@ export default function Home() {
             });
             await refresh();
           }}
-          onDelete={(task) => {
-            console.log(task);
-            TasksService.deleteTask({
+          onDelete={async (task) => {
+            await TasksService.deleteTask({
               deleteTaskRequest: {
                 taskId: task.id,
               },
-            }).then(refresh);
+            });
+            await refresh();
           }}
           onEditTaskTitle={(task, newTitle) => {
             setTasks(

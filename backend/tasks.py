@@ -8,7 +8,7 @@ class Task():
     def __init__(
         self,
         name: str,
-        completed: Optional[datetime]
+        completed: Optional[datetime] = None,
     ) -> None:
         self.id = uuid4()
         self.name = name
