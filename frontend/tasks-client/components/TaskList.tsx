@@ -10,7 +10,8 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  padding: 4px 0px 0px 0px;
+  gap: 4px;
 `;
 
 export interface TaskListProps {

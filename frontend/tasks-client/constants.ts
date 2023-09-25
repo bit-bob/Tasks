@@ -1,9 +1,7 @@
 import { AutoAnimateOptions } from "@formkit/auto-animate";
 
 export const black = "rgb(0 0 0)";
-export const blackTransparent = "rgba(0, 0, 0, 0.50)";
 export const white = "rgb(255 255 255)";
-export const transparent = "rgba(0, 0, 0, 0.01)";
 
 export const slate50 = "rgb(248 250 252)";
 export const slate100 = "rgb(241 245 249)";

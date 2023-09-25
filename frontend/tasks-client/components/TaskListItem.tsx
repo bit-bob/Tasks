@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { TaskModel } from "api";
+import { transparentize } from "polished";
 
 import { IconButton } from "../icons/Icon";
-import { slate100, blackTransparent } from "../constants";
+import { slate100, black } from "../constants";
 
 import { Button } from "./Button";
 
@@ -57,7 +58,7 @@ const Text = styled.input<{ isCompleted: boolean }>`
   width: auto;
   outline: none;
 
-  ${(props) => props.isCompleted && `color: ${blackTransparent}`}
+  ${(props) => props.isCompleted && `color: ${transparentize(0.5, black)}`}
 `;
 
 export interface TaskListItemProps {
