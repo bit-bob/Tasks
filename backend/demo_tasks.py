@@ -1,18 +1,25 @@
 from tasks import Task, TaskList
 from datetime import datetime, timezone
-# from demo_tasks_personal import demo_tasks_personal_info
 
 
-def populate_demo_tasks(task_list, info):
-    for name, completed in info:
+def populate_demo_tasks(
+    task_list,
+    info_complete,
+    info_incomplete,
+):
+
+    for name, completed in info_complete:
         datetime.now().isoformat()
         task_list.add_task(Task(
             name=name,
             completed=completed,
         ))
 
+    for name in info_incomplete:
+        task_list.create_task(name=name)
 
-demo_tasks_info = [
+
+demo_tasks_info_complete = [
     (
         'front end - reusable components - complete button',
         datetime(2023, 9, 13, 12, 59, 5, tzinfo=timezone.utc),
@@ -50,14 +57,6 @@ demo_tasks_info = [
         datetime(2023, 9, 13, 15, 58, 10, tzinfo=timezone.utc),
     ),
     (
-        'Create Tasks - back end - endpoints',
-        None,
-    ),
-    (
-        'Create Tasks - front end - full implementation',
-        None,
-    ),
-    (
         'Update Tasks - back end - endpoints',
         datetime(2023, 9, 14, 13, 23, 45, tzinfo=timezone.utc),
     ),
@@ -74,51 +73,29 @@ demo_tasks_info = [
         datetime(2023, 9, 20, 11, 53, tzinfo=timezone.utc),
     ),
     (
-        'Persisting Tasks',
-        None,
-    ),
-    (
-        'front end - reusable components - front end - date picker',
-        None,
-    ),
-    (
-        'front end - reusable components - front end - task picker',
-        None,
-    ),
-    (
-        'Task Events',
-        None,
-    ),
-    (
-        'Repeating Tasks',
-        None,
-    ),
-    (
-        'Parent Tasks',
-        None,
-    ),
-    (
-        'Local DB for offline use',
-        None,
-    ),
-    (
-        'consider using elasticsearch for read heavy parts of the code',
-        None,
-    ),
-    (
-        'consider using a graph database for relationship heavy parts of the code',
-        None,
-    ),
-    (
-        'read about using recursive queries for relationship heavy parts of the code https://www.postgresql.org/docs/current/queries-with.html',
-        None,
-    ),
-    (
-        'read about using ltree for hierarchy heavy parts of the code https://www.postgresql.org/docs/current/ltree.html',
-        None,
+        'Create Tasks - back end - endpoints',
+        datetime(2023, 9, 25, 16, 50, tzinfo=timezone.utc),
     ),
 ]
 
+demo_tasks_info_incomplete = [
+    'Create Tasks - front end - full implementation',
+    'Persisting Tasks',
+    'front end - reusable components - front end - date picker',
+    'front end - reusable components - front end - task picker',
+    'Task Events',
+    'Repeating Tasks',
+    'Parent Tasks',
+    'Local DB for offline use',
+    'consider using elasticsearch for read heavy parts of the code',
+    'consider using a graph database for relationship heavy parts of the code',
+    'read about using recursive queries for relationship heavy parts of the code https://www.postgresql.org/docs/current/queries-with.html',
+    'read about using ltree for hierarchy heavy parts of the code https://www.postgresql.org/docs/current/ltree.html',
+]
+
 demo_tasks = TaskList()
-populate_demo_tasks(demo_tasks, demo_tasks_info)
-# populate_demo_tasks(demo_tasks, demo_tasks_personal_info)
+populate_demo_tasks(
+    demo_tasks,
+    demo_tasks_info_complete,
+    demo_tasks_info_incomplete,
+)

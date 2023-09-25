@@ -4,7 +4,7 @@ import { TaskList } from "./TaskList";
 
 const meta: Meta<typeof TaskList> = {
   component: TaskList,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;

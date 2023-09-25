@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prettier:fix": "prettier . --write",
+    "prettier:check": "prettier . --check"
   },
   "dependencies": {
     "@capacitor/android": "^5.4.1",

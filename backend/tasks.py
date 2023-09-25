@@ -8,7 +8,7 @@ class Task():
     def __init__(
         self,
         name: str,
-        completed: Optional[datetime]
+        completed: Optional[datetime] = None,
     ) -> None:
         self.id = uuid4()
         self.name = name
@@ -47,6 +47,12 @@ class TaskList():
         task: Task,
     ):
         self.tasks.append(task)
+
+    def create_task(
+        self,
+        name: str,
+    ):
+        self.tasks.append(Task(name))
 
     # Read
     def get_tasks(

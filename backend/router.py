@@ -16,6 +16,18 @@ router = APIRouter(
 
 
 # -- Tasks --
+# Create
+class CreateTaskRequest(BaseModel):
+    name: str
+
+
+@router.post("/tasks/create")
+async def create_task(
+    request: CreateTaskRequest,
+) -> None:
+    demo_tasks.create_task(request.name)
+
+
 # Read
 class GetTasksResponse(BaseModel):
     tasks: List[TaskModel]

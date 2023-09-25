@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  CreateTaskRequest,
   DeleteTaskRequest,
   GetTasksResponse,
   HTTPValidationError,
@@ -22,6 +23,8 @@ import type {
   UpdateTaskRequest,
 } from '../models/index';
 import {
+    CreateTaskRequestFromJSON,
+    CreateTaskRequestToJSON,
     DeleteTaskRequestFromJSON,
     DeleteTaskRequestToJSON,
     GetTasksResponseFromJSON,
@@ -33,6 +36,10 @@ import {
     UpdateTaskRequestFromJSON,
     UpdateTaskRequestToJSON,
 } from '../models/index';
+
+export interface CreateTaskOperationRequest {
+    createTaskRequest: CreateTaskRequest;
+}
 
 export interface DeleteTaskOperationRequest {
     deleteTaskRequest: DeleteTaskRequest;
@@ -50,6 +57,38 @@ export interface UpdateTaskOperationRequest {
  * 
  */
 export class TasksApi extends runtime.BaseAPI {
+
+    /**
+     * Create Task
+     */
+    async createTaskRaw(requestParameters: CreateTaskOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.createTaskRequest === null || requestParameters.createTaskRequest === undefined) {
+            throw new runtime.RequiredError('createTaskRequest','Required parameter requestParameters.createTaskRequest was null or undefined when calling createTask.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/tasks/create`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateTaskRequestToJSON(requestParameters.createTaskRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Create Task
+     */
+    async createTask(requestParameters: CreateTaskOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.createTaskRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Delete Task

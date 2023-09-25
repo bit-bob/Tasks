@@ -4,7 +4,7 @@ import { PlayingPill } from "./PlayingPill";
 
 const meta: Meta<typeof PlayingPill> = {
   component: PlayingPill,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;

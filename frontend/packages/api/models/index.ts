@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './CreateTaskRequest';
 export * from './DeleteTaskRequest';
 export * from './GetTasksResponse';
 export * from './HTTPValidationError';

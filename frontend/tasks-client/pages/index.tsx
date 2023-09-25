@@ -1,15 +1,12 @@
-import {
-  TasksApi,
-  TaskModel,
-  Configuration,
-} from "api";
+import { TasksApi, TaskModel, Configuration } from "api";
 import { useState, useCallback, useEffect } from "react";
 import { AppHeader } from "../components/AppHeader";
+import { Button } from "../components/Button";
 import { TaskList } from "../components/TaskList";
 import { GlobalStyles } from "../GlobalStyles";
 import { throttle } from "lodash";
 import styled from "styled-components";
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 const config = new Configuration({ basePath: "http://localhost:8000" });
 const TasksService = new TasksApi(config);
@@ -21,21 +18,25 @@ const Container = styled.div`
 `;
 
 export default function Home() {
-  const [tasks, setTasks] = useState<TaskModel[] | null>(null)
+  const [tasks, setTasks] = useState<TaskModel[] | null>(null);
 
-  const refresh = () => TasksService.getTasks().then(response => response.tasks).then(setTasks)
+  const refresh = async () => {
+    const response = await TasksService.getTasks();
+    setTasks(response.tasks);
+  };
 
   useEffect(() => {
-    refresh()
-  }, [])
+    refresh();
+  }, []);
 
-  const editTaskTitle = (task: TaskModel, newTitle: string) => {
-    TasksService.updateTask({
+  const editTaskTitle = async (task: TaskModel, newTitle: string) => {
+    await TasksService.updateTask({
       updateTaskRequest: {
         taskId: task.id,
         name: newTitle,
       },
-    }).then(refresh);
+    });
+    await refresh();
   };
 
   // calls editTaskTitle every 2s with the latest changes
@@ -44,7 +45,24 @@ export default function Home() {
   return (
     <Container>
       <GlobalStyles />
-      <AppHeader title="Tasks" />
+      <AppHeader
+        title="Tasks"
+        actions={
+          <Button
+            variant="default"
+            onClick={async () => {
+              await TasksService.createTask({
+                createTaskRequest: {
+                  name: "Unnamed Task",
+                },
+              });
+              await refresh();
+            }}
+          >
+            Add Task
+          </Button>
+        }
+      />
       {!tasks ? (
         "Loading..."
       ) : (
@@ -59,24 +77,26 @@ export default function Home() {
             });
             await refresh();
           }}
-          onDelete={(task) => {
-            console.log(task);
-            TasksService.deleteTask({
+          onDelete={async (task) => {
+            await TasksService.deleteTask({
               deleteTaskRequest: {
                 taskId: task.id,
               },
-            }).then(refresh);
+            });
+            await refresh();
           }}
           onEditTaskTitle={(task, newTitle) => {
-            setTasks(tasks.map((t) => {
-              if (task.id !== t.id) {
-                return t;
-              }
-              return {
-                ...t,
-                name: newTitle,
-              };
-            }))
+            setTasks(
+              tasks.map((t) => {
+                if (task.id !== t.id) {
+                  return t;
+                }
+                return {
+                  ...t,
+                  name: newTitle,
+                };
+              })
+            );
             editTaskTitleThrottled(task, newTitle);
           }}
           tasks={tasks}
