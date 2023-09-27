@@ -39,3 +39,6 @@ apk:
 
 run:
 	./cxy.sh -fastapi ".venv/bin/python backend/main.py" -client "npx nx dev tasks-client"
+
+api_docker_image:
+	docker build -f images/api.Dockerfile .
