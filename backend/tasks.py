@@ -15,7 +15,10 @@ class Task:
         self.created = datetime.now()
 
     def __str__(self) -> str:
-        return f"Task {self.id}: {self.name}{' (complete)' if self.completed else ''}"
+        return f"{self.name}{' (complete)' if self.completed else ''}"
+
+    def __repr__(self) -> str:
+        return str(self)
 
     def __lt__(
         self,
