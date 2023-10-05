@@ -252,6 +252,7 @@ tasks_task = DemoTask(
                 DemoTaskEventStart([2023, 10, 3, 18, 1]),
                 DemoTaskEventComplete([2023, 10, 3, 18, 16]),
                 DemoTaskEventStart([2023, 10, 5, 16, 15]),
+                DemoTaskEventComplete([2023, 10, 5, 16, 38]),
             ],
         ),
         DemoTask(
@@ -587,6 +588,13 @@ tasks_task = DemoTask(
                                     events=[
                                         DemoTaskEventStart([2023, 10, 5, 15, 26]),
                                         DemoTaskEventComplete([2023, 10, 5, 15, 41]),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Make logs easier to read",
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 5, 16, 22]),
+                                        DemoTaskEventComplete([2023, 10, 5, 16, 37]),
                                     ],
                                 ),
                                 DemoTask(

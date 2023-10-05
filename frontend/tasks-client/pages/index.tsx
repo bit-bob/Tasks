@@ -43,8 +43,8 @@ export default function Home() {
     await refresh();
   };
 
-  // calls editTaskTitle every 2s with the latest changes
-  const editTaskTitleThrottled = useCallback(throttle(editTaskTitle, 2000), []);
+  // calls editTaskTitle every 8s with the latest changes
+  const editTaskTitleThrottled = useCallback(throttle(editTaskTitle, 8000), []);
 
   return (
     <Container>
