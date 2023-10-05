@@ -10,6 +10,7 @@ class DemoTaskEventType(Enum):
     START = 1
     PAUSE = 2
     COMPLETE = 3
+    DROP = 4
 
 
 class DemoTaskEvent:
@@ -26,12 +27,40 @@ class DemoTaskEvent:
         else:
             self._date = datetime(*date_args, tzinfo=timezone.utc)
 
+    def __str__(self) -> str:
+        return f"Event({'type=' + self._type.name if self._type is not None else ''} date={self._date})"
+
     @property
-    def is_complete(self):
+    def date(self) -> Optional[datetime]:
+        return self._date
+
+    @property
+    def is_create(self) -> bool:
+        return self._type == DemoTaskEventType.CREATE
+
+    @property
+    def is_start(self) -> bool:
+        return self._type == DemoTaskEventType.START
+
+    @property
+    def is_pause(self) -> bool:
+        return self._type == DemoTaskEventType.PAUSE
+
+    @property
+    def is_complete(self) -> bool:
         return self._type == DemoTaskEventType.COMPLETE
 
-    def __str__(self) -> str:
-        return f" -- Event{' type ' + self._type.name if self._type is not None else ''} at {self._date}"
+    @property
+    def is_drop(self) -> bool:
+        return self._type == DemoTaskEventType.DROP
+
+    @property
+    def is_in_future(self) -> bool:
+        if self.date is None:
+            return False
+
+        now = datetime.now().replace(tzinfo=timezone.utc)
+        return self.date > now
 
 
 class DemoTaskEventStart(DemoTaskEvent):
@@ -44,6 +73,10 @@ class DemoTaskEventPause(DemoTaskEvent):
 
 class DemoTaskEventComplete(DemoTaskEvent):
     _type = DemoTaskEventType.COMPLETE
+
+
+class DemoTaskEventDrop(DemoTaskEvent):
+    _type = DemoTaskEventType.DROP
 
 
 class DemoTaskStatus(Enum):
@@ -117,11 +150,19 @@ class DemoTask:
         if self._events is None or len(self._events) == 0:
             return DemoTaskStatus.NOT_STARTED
 
-        last_completed = self.last_completed_on
+        last_started = self.last_started_event
+        if last_started is not None:
+            if last_started.is_in_future:
+                return DemoTaskStatus.ON_HOLD
+
+        last_completed = self.last_completed_date
         if last_completed is not None:
+            if self.repetition is None:
+                return DemoTaskStatus.COMPLETE
+
             now = datetime.now().replace(tzinfo=timezone.utc)
             time_delta = now - last_completed
-            if self.repetition is None or time_delta.days < self.repetition.value:
+            if time_delta.days < self.repetition.value:
                 return DemoTaskStatus.COMPLETE
 
         return DemoTaskStatus.IN_PROGRESS
@@ -143,11 +184,30 @@ class DemoTask:
         return self.status == DemoTaskStatus.COMPLETE
 
     @property
-    def last_completed_on(self) -> Optional[datetime]:
+    def last_started_event(self) -> Optional["DemoTaskEvent"]:
+        if self._events is not None and len(self._events) > 0:
+            for event in reversed(self._events):
+                if event.is_start:
+                    return event
+
+    @property
+    def last_started_date(self) -> Optional[datetime]:
+        last_started_event = self.last_started_event
+        if last_started_event is not None:
+            return last_started_event.date
+
+    @property
+    def last_completed_event(self) -> Optional["DemoTaskEvent"]:
         if self._events is not None and len(self._events) > 0:
             for event in reversed(self._events):
                 if event.is_complete:
-                    return event._date
+                    return event
+
+    @property
+    def last_completed_date(self) -> Optional[datetime]:
+        last_completed_event = self.last_completed_event
+        if last_completed_event is not None:
+            return last_completed_event.date
 
     @property
     def path(self) -> str:
@@ -187,9 +247,11 @@ tasks_task = DemoTask(
         DemoTask(
             "Commit Something",
             repetition=RepetitionCycle.DAILY,
+            priority=Priority.HIGH,
             events=[
                 DemoTaskEventStart([2023, 10, 3, 18, 1]),
-                # DemoTaskEventComplete([2023, 10, 3, 17, ]),
+                DemoTaskEventComplete([2023, 10, 3, 18, 16]),
+                DemoTaskEventStart([2023, 10, 5, 16, 15]),
             ],
         ),
         DemoTask(
@@ -381,10 +443,40 @@ tasks_task = DemoTask(
                         DemoTaskEventPause([2023, 10, 3, 17, 5]),
                         DemoTaskEventStart([2023, 10, 3, 17, 43]),
                         DemoTaskEventPause([2023, 10, 3, 18, 1]),
+                        DemoTaskEventStart([2023, 10, 3, 18, 16]),
+                        DemoTaskEventPause([2023, 10, 3, 18, 41]),
                     ],
                     children=[
                         DemoTask(
                             "Split DemoTasks and DemoTaskEvents into different structures so it mirrors the db more closely and makes it easier to see what order events were in",
+                            priority=Priority.MEDIUM,
+                        ),
+                        DemoTask(
+                            "Add Dropped Events",
+                            priority=Priority.MEDIUM,
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 13, 41]),
+                                DemoTaskEventComplete([2023, 10, 5, 13, 46]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Treat Tasks with a start date in the future as On Hold",
+                            priority=Priority.MEDIUM,
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 14, 2]),
+                                DemoTaskEventPause([2023, 10, 5, 14, 46]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Make it clearer when tasks are complete or not",
+                            priority=Priority.MEDIUM,
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 15, 53]),
+                                DemoTaskEventPause([2023, 10, 5, 16, 13]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Add Urgency",
                             priority=Priority.MEDIUM,
                         ),
                     ],
@@ -407,6 +499,8 @@ tasks_task = DemoTask(
                                 DemoTaskEventPause([2023, 9, 28, 14, 42]),
                                 DemoTaskEventStart([2023, 9, 30, 9, 55]),
                                 DemoTaskEventPause([2023, 9, 30, 10, 30]),
+                                DemoTaskEventStart([2023, 10, 5, 13, 37]),
+                                DemoTaskEventPause([2023, 10, 5, 15, 53]),
                             ],
                         ),
                         DemoTask(
@@ -466,9 +560,41 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Use logs here",
-                            events=[
-                                DemoTaskEventStart([2023, 10, 3, 13, 23]),
-                                DemoTaskEventComplete([2023, 10, 3, 18, 16]),
+                            children=[
+                                DemoTask(
+                                    "Add a basic log and check it works when using the app",
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 5, 14, 50]),
+                                        DemoTaskEventComplete([2023, 10, 5, 14, 56]),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Figure out how to see debug level logs",
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 5, 14, 56]),
+                                        DemoTaskEventComplete([2023, 10, 5, 15, 10]),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Add logs for each endpoint",
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 5, 15, 19]),
+                                        DemoTaskEventComplete([2023, 10, 5, 15, 26]),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Increase the time between update requests to capture a more complete change when typing",
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 5, 15, 26]),
+                                        DemoTaskEventComplete([2023, 10, 5, 15, 41]),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Add extra information to logs, see https://gist.github.com/liviaerxin/d320e33cbcddcc5df76dd92948e5be3b",
+                                ),
+                                DemoTask(
+                                    "Store logs in a text file",
+                                ),
                             ],
                         ),
                         DemoTask(
@@ -501,6 +627,10 @@ tasks_task = DemoTask(
                         DemoTask(
                             "Design",
                             children=[
+                                DemoTask(
+                                    "Design an Events Page like in aTimeLogger in figma",
+                                    priority=Priority.HIGH,
+                                ),
                                 DemoTask(
                                     "Design how users will play / pause / complete in figma",
                                     events=[
@@ -707,6 +837,9 @@ tasks_task = DemoTask(
                                 DemoTask(
                                     "Write a script to add demo data to the db",
                                 ),
+                                DemoTask(
+                                    "Consider taking database dumps regularly for backups, see https://linuxhint.com/automatically-backup-mysql-database-using-python/"
+                                ),
                             ],
                         ),
                     ],
@@ -879,29 +1012,30 @@ def get_next_task(
 
     for demo_task in tasks_included:
         for child in get_grandchildren(demo_task):
-            new_task = Task(
-                name=""
-                # + child.status.name
-                # + " - "
-                # + child.priority.name
-                # + " - "
-                + child.path,
-                completed=child.last_completed_on,
-            )
-            tasks_grouped[child.status][child.priority].append(new_task)
+            tasks_grouped[child.status][child.priority].append(child)
 
-    for status in DemoTaskStatus:
-        if statuses_included is not None:
-            if status not in statuses_included:
+    for priority in reversed(Priority):
+        if priorities_included is not None:
+            if priority not in priorities_included:
                 continue
 
-        for priority in reversed(Priority):
-            if priorities_included is not None:
-                if priority not in priorities_included:
+        for status in DemoTaskStatus:
+            if statuses_included is not None:
+                if status not in statuses_included:
                     continue
 
             for task in tasks_grouped[status][priority]:
-                yield task
+                yield Task(
+                    name=""
+                    # + task.status.name
+                    # + " - "
+                    # + task.priority.name
+                    # + " - "
+                    + task.path,
+                    completed=task.last_completed_date
+                    if status == DemoTaskStatus.COMPLETE
+                    else None,
+                )
 
 
 def populate_demo_tasks(
