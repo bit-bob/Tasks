@@ -1,8 +1,8 @@
-import json
 import argparse
+import json
 
-from fastapi.openapi.utils import get_openapi
 from app import app
+from fastapi.openapi.utils import get_openapi
 
 parser = argparse.ArgumentParser(description="Open api spec generator")
 parser.add_argument(

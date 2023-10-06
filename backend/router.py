@@ -1,14 +1,12 @@
+import logging
 from datetime import datetime
 from typing import List, Optional
 from uuid import UUID
 
-from fastapi import APIRouter
-from pydantic import BaseModel
-
-from models import TaskModel
 from demo_tasks import demo_tasks
-import logging
-
+from fastapi import APIRouter
+from models import TaskModel
+from pydantic import BaseModel
 
 # App
 router = APIRouter(

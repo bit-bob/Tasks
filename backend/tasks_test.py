@@ -1,5 +1,6 @@
-from tasks import Task
 from datetime import datetime
+
+from tasks import Task
 
 
 class TestTasks:

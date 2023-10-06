@@ -1,8 +1,9 @@
-from tasks import Task, TaskList
-from datetime import datetime, timezone
-from typing import List, Optional, Generator
-from enum import Enum
 import json
+from datetime import datetime, timezone
+from enum import Enum
+from typing import Generator, List, Optional
+
+from tasks import Task, TaskList
 
 
 class DemoTaskEventType(Enum):

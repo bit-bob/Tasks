@@ -1,6 +1,7 @@
+import logging
+
 import uvicorn
 from settings import settings
-import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
