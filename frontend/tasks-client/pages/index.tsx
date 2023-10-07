@@ -7,8 +7,11 @@ import { GlobalStyles } from "../GlobalStyles";
 import { throttle } from "lodash";
 import styled from "styled-components";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { StatusBar, Style } from "@capacitor/status-bar";
 
-const config = new Configuration({ basePath: "http://localhost:8000" });
+const { NEXT_PUBLIC_BASE_API_URL: BASE_API_URL = "http://localhost:8000" } = process.env
+
+const config = new Configuration({ basePath: BASE_API_URL });
 const TasksService = new TasksApi(config);
 
 const Container = styled.div`
@@ -27,6 +30,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    StatusBar
+      .setOverlaysWebView({ overlay: true })
+      .then(() => StatusBar.setStyle({ style: Style.Light }))
+      .catch(console.warn);
     refresh();
   }, []);
 
