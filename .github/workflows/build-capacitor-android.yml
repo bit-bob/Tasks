@@ -17,6 +17,8 @@ jobs:
         cache: "npm"
     - run: npm install
     - run: npx nx export tasks-client
+      env:
+        NEXT_PUBLIC_BASE_API_URL: ${{ vars.NEXT_PUBLIC_BASE_API_URL }}
     - run: npx nx cap:sync tasks-client
     - run: npx nx cap:update tasks-client
     - uses: actions/setup-java@v3
