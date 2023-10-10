@@ -9,7 +9,8 @@ import styled from "styled-components";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { StatusBar, Style } from "@capacitor/status-bar";
 
-const { NEXT_PUBLIC_BASE_API_URL: BASE_API_URL = "http://localhost:8000" } = process.env
+const { NEXT_PUBLIC_BASE_API_URL: BASE_API_URL = "http://localhost:8000" } =
+  process.env;
 
 const config = new Configuration({ basePath: BASE_API_URL });
 const TasksService = new TasksApi(config);
@@ -30,8 +31,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    StatusBar
-      .setOverlaysWebView({ overlay: true })
+    StatusBar.setOverlaysWebView({ overlay: true })
       .then(() => StatusBar.setStyle({ style: Style.Light }))
       .catch(console.warn);
     refresh();
