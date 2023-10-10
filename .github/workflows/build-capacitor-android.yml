@@ -30,10 +30,10 @@ jobs:
       with:
         name: Debug APK
         path: frontend/tasks-client/android/app/build/outputs/apk/debug/app-debug.apk
-    # - name: upload artifact to Firebase App Distribution
-    #   uses: wzieba/Firebase-Distribution-Github-Action@v1
-    #   with:
-    #     appId: tasks-58023
-    #     serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-    #     groups: testers
-    #     file: frontend/tasks-client/android/app/build/outputs/apk/debug/app-debug.apk
+    - name: upload artifact to Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1
+      with:
+        appId: tasks-58023
+        serviceCredentialsFileContent: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIALS }}
+        groups: testers
+        file: frontend/tasks-client/android/app/build/outputs/apk/debug/app-debug.apk
