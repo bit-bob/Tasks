@@ -1,12 +1,28 @@
 import json
+import logging
+import sys
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Generator, List, Optional
 
 from tasks import Task, TaskList
 
+if __name__ == "__main__":
+    # setup logs
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(message)s",
+        handlers=[logging.StreamHandler(sys.stdout)],
+    )
 
-class DemoTaskEventType(Enum):
+
+class EnumWithTitle(Enum):
+    @property
+    def title(self):
+        return self.name.title().replace("_", " ")
+
+
+class DemoTaskEventType(EnumWithTitle):
     CREATE = 0
     START = 1
     PAUSE = 2
@@ -80,20 +96,20 @@ class DemoTaskEventDrop(DemoTaskEvent):
     _type = DemoTaskEventType.DROP
 
 
-class DemoTaskStatus(Enum):
+class DemoTaskStatus(EnumWithTitle):
     NOT_STARTED = 1
     IN_PROGRESS = 2
     COMPLETE = 3
     ON_HOLD = 4
 
 
-class RepetitionCycle(Enum):
+class RepetitionCycle(EnumWithTitle):
     DAILY = 1
     WEEKLY = 7
     MONTHLY = 30
 
 
-class Priority(Enum):
+class Priority(EnumWithTitle):
     ON_HOLD = 1
     WAITING = 2
     LOW = 4
@@ -183,6 +199,10 @@ class DemoTask:
     @property
     def is_complete(self) -> bool:
         return self.status == DemoTaskStatus.COMPLETE
+
+    @property
+    def is_waiting(self) -> bool:
+        return self.priority == Priority.WAITING
 
     @property
     def last_started_event(self) -> Optional["DemoTaskEvent"]:
@@ -326,6 +346,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Add Urgency",
+                            priority=Priority.MEDIUM,
                             events=[
                                 DemoTaskEventStart([2023, 10, 6, 14, 30]),
                                 DemoTaskEventPause([2023, 10, 6, 17, 30]),
@@ -1352,7 +1373,18 @@ def get_next_task(
                 if status not in statuses_included:
                     continue
 
+            printed_heading = False
             for task in tasks_grouped[status][priority]:
+                if not printed_heading:
+                    heading_body = f"{status.title}"
+                    if not task.is_on_hold:
+                        heading_body = f"{heading_body}, {priority.title}"
+                        if not task.is_waiting:
+                            heading_body = f"{heading_body} Priority"
+
+                    logging.debug(f"\n == {heading_body} == ")
+                    printed_heading = True
+
                 yield Task(
                     name=""
                     # + task.status.name
@@ -1381,28 +1413,10 @@ def populate_demo_tasks(
 
 
 demo_tasks = TaskList()
-populate_demo_tasks(
-    demo_tasks,
-    [
-        tasks_task,
-    ],
-    priorities_included=[
-        Priority.HIGH,
-        Priority.MEDIUM,
-        # Priority.LOW,
-        # Priority.WAITING,
-        # Priority.ON_HOLD,
-    ],
-    statuses_included=[
-        DemoTaskStatus.NOT_STARTED,
-        DemoTaskStatus.IN_PROGRESS,
-        # DemoTaskStatus.COMPLETE,
-        # DemoTaskStatus.ON_HOLD,
-    ],
-)
 
 
 if __name__ == "__main__":
+    logging.debug(f"\n\n\n ==== TASKS ({datetime.now():%Y %b %d, %H:%M}) ==== ")
     for task in get_next_task(
         [
             tasks_task,
@@ -1420,4 +1434,25 @@ if __name__ == "__main__":
         #     DemoTaskStatus.ON_HOLD,
         # ],
     ):
-        print(task)
+        logging.debug(task)
+
+else:
+    populate_demo_tasks(
+        demo_tasks,
+        [
+            tasks_task,
+        ],
+        priorities_included=[
+            Priority.HIGH,
+            Priority.MEDIUM,
+            # Priority.LOW,
+            # Priority.WAITING,
+            # Priority.ON_HOLD,
+        ],
+        statuses_included=[
+            DemoTaskStatus.NOT_STARTED,
+            DemoTaskStatus.IN_PROGRESS,
+            # DemoTaskStatus.COMPLETE,
+            # DemoTaskStatus.ON_HOLD,
+        ],
+    )
