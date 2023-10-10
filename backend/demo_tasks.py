@@ -124,7 +124,7 @@ class DemoTask:
         children: Optional[List["DemoTask"]] = None,
         events: Optional[List[DemoTaskEvent]] = None,
         repetition: Optional[RepetitionCycle] = None,
-        blocked_by: Optional[List[str]] = None,
+        blocked: bool = False,
         priority: Optional[Priority] = None,
     ) -> None:
         self._name = name
@@ -137,7 +137,7 @@ class DemoTask:
 
         self._events = events
         self._repetition = repetition
-        self._blocked_by = blocked_by
+        self._blocked = blocked
         self._priority = priority
 
     def __str__(self) -> str:
@@ -161,6 +161,9 @@ class DemoTask:
 
     @property
     def status(self) -> DemoTaskStatus:
+        if self.blocked:
+            return DemoTaskStatus.ON_HOLD
+
         if self.priority == Priority.ON_HOLD:
             return DemoTaskStatus.ON_HOLD
 
@@ -238,8 +241,8 @@ class DemoTask:
             return f"{' - '.join([p.path for p in self._parents])} - {self.name}"
 
     @property
-    def is_blocked(self) -> bool:
-        return self._blocked_by is None
+    def blocked(self) -> bool:
+        return self._blocked
 
     @property
     def priority(self) -> Priority:
@@ -274,7 +277,6 @@ tasks_task = DemoTask(
             children=[
                 DemoTask(
                     "Rewrite demo tasks to take more fields into account",
-                    priority=Priority.HIGH,
                     events=[
                         DemoTaskEventStart([2023, 9, 26, 12]),
                         DemoTaskEventPause([2023, 9, 26, 14]),
@@ -307,7 +309,6 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Split DemoTasks and DemoTaskEvents into different structures so it mirrors the db more closely and makes it easier to see what order events were in",
-                            priority=Priority.MEDIUM,
                         ),
                         DemoTask(
                             "Add Dropped Events",
@@ -346,7 +347,6 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Add Urgency",
-                            priority=Priority.MEDIUM,
                             events=[
                                 DemoTaskEventStart([2023, 10, 6, 14, 30]),
                                 DemoTaskEventPause([2023, 10, 6, 17, 30]),
@@ -498,13 +498,17 @@ tasks_task = DemoTask(
                                 ),
                                 DemoTask(
                                     "Get the IOS App on Helina's phone",
-                                    priority=Priority.HIGH,
                                     children=[
                                         DemoTask(
+                                            "Plan",
+                                        ),
+                                        DemoTask(
                                             "Create the app in apple",
+                                            blocked=True,
                                         ),
                                         DemoTask(
                                             "Tell firebase where the app is",
+                                            blocked=True,
                                         ),
                                     ],
                                 ),
@@ -637,6 +641,7 @@ tasks_task = DemoTask(
                 ),
                 DemoTask(
                     "other cool things",
+                    blocked=True,
                 ),
             ],
         ),
@@ -813,12 +818,15 @@ tasks_task = DemoTask(
                                 ),
                                 DemoTask(
                                     "Make the db and tables",
+                                    blocked=True,
                                 ),
                                 DemoTask(
                                     "Write a script to add demo data to the db",
+                                    blocked=True,
                                 ),
                                 DemoTask(
                                     "Consider taking database dumps regularly for backups, see https://linuxhint.com/automatically-backup-mysql-database-using-python/",
+                                    blocked=True,
                                 ),
                             ],
                         ),
@@ -940,7 +948,6 @@ tasks_task = DemoTask(
                             children=[
                                 DemoTask(
                                     "Design an Events Page like in aTimeLogger in figma",
-                                    priority=Priority.HIGH,
                                 ),
                                 DemoTask(
                                     "Design how users will play / pause / complete in figma",
@@ -968,6 +975,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Back End",
+                            blocked=True,
                             children=[
                                 DemoTask(
                                     "Add 'Events' to the task model",
@@ -993,7 +1001,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Calculate Status based on Events",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                         ),
                     ],
                 ),
@@ -1014,7 +1022,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Front End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                             children=[
                                 DemoTask(
                                     "Add the 'Completed' page",
@@ -1029,7 +1037,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Back End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                         ),
                     ],
                 ),
@@ -1053,7 +1061,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Front End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                             children=[
                                 DemoTask(
                                     "Add an 'Edit' button to the TaskListItem component to will open the 'Edit' page",
@@ -1071,7 +1079,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Back End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                         ),
                     ],
                 ),
@@ -1087,16 +1095,18 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Filter on status",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                             children=[
                                 DemoTask(
                                     "Design",
                                 ),
                                 DemoTask(
                                     "Front End",
+                                    blocked=True,
                                 ),
                                 DemoTask(
                                     "Back End",
+                                    blocked=True,
                                 ),
                             ],
                         ),
@@ -1110,9 +1120,11 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Front End",
+                            blocked=True,
                         ),
                         DemoTask(
                             "Back End",
+                            blocked=True,
                         ),
                     ],
                 ),
@@ -1127,9 +1139,11 @@ tasks_task = DemoTask(
                                 ),
                                 DemoTask(
                                     "Front End",
+                                    blocked=True,
                                 ),
                                 DemoTask(
                                     "Back End",
+                                    blocked=True,
                                 ),
                             ],
                         ),
@@ -1144,9 +1158,11 @@ tasks_task = DemoTask(
                                         ),
                                         DemoTask(
                                             "Front End",
+                                            blocked=True,
                                         ),
                                         DemoTask(
                                             "Back End",
+                                            blocked=True,
                                         ),
                                     ],
                                 ),
@@ -1158,9 +1174,11 @@ tasks_task = DemoTask(
                                         ),
                                         DemoTask(
                                             "Front End",
+                                            blocked=True,
                                         ),
                                         DemoTask(
                                             "Back End",
+                                            blocked=True,
                                         ),
                                     ],
                                 ),
@@ -1170,9 +1188,11 @@ tasks_task = DemoTask(
                 ),
                 DemoTask(
                     "iPhone Dynamic Island Task Status",
+                    blocked=True,
                 ),
                 DemoTask(
                     "Iphone Widget",
+                    blocked=True,
                     children=[
                         DemoTask(
                             "Task Status",
@@ -1186,13 +1206,14 @@ tasks_task = DemoTask(
         ),
         DemoTask(
             "Day ? - Users, Persistence and Settings",
+            blocked=True,
+            priority=Priority.LOW,
             children=[
                 DemoTask(
                     "Make Users",
                 ),
                 DemoTask(
                     "Add App Wide Settings",
-                    priority=Priority.LOW,
                     children=[
                         DemoTask(
                             "Colour Themes",
@@ -1206,7 +1227,7 @@ tasks_task = DemoTask(
         ),
         DemoTask(
             "Day 3 - Everything Else",
-            priority=Priority.LOW,
+            blocked=True,
             children=[
                 # "Priority": {
                 #     "Design": [
@@ -1426,11 +1447,12 @@ if __name__ == "__main__":
         #     Priority.MEDIUM,
         #     Priority.LOW,
         #     Priority.WAITING,
+        #     Priority.ON_HOLD,
         # ],
         # statuses_included=[
-        #     DemoTaskStatus.COMPLETE,
-        #     DemoTaskStatus.IN_PROGRESS,
         #     DemoTaskStatus.NOT_STARTED,
+        #     DemoTaskStatus.IN_PROGRESS,
+        #     DemoTaskStatus.COMPLETE,
         #     DemoTaskStatus.ON_HOLD,
         # ],
     ):
