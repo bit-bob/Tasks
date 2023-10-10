@@ -4,7 +4,6 @@ import uvicorn
 from settings import settings
 
 if __name__ == "__main__":
-
     # setup logs
     logging.basicConfig(
         level=logging.INFO,
@@ -12,7 +11,7 @@ if __name__ == "__main__":
         datefmt="%Y %b %d, %H:%M",
         handlers=[
             logging.FileHandler("task_events.log"),
-        ]
+        ],
     )
 
     # run api server
