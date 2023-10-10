@@ -25,7 +25,7 @@ class CreateTaskRequest(BaseModel):
 async def create_task(
     request: CreateTaskRequest,
 ) -> None:
-    logging.warn(f"\n\n ==== \n Creating Task with name = '{request.name}\n ==== \n")
+    logging.warn(f"Creating '{request.name}'")
     demo_tasks.create_task(request.name)
 
 
@@ -36,7 +36,7 @@ class GetTasksResponse(BaseModel):
 
 @router.get("/tasks")
 async def get_tasks() -> GetTasksResponse:
-    logging.debug(f" == Get Tasks == ")
+    logging.debug(f"Getting Tasks")
     return GetTasksResponse(
         tasks=[
             TaskModel(
@@ -62,9 +62,8 @@ async def update_task(
     task = demo_tasks.get_task(request.task_id)
     if task is None:
         raise Exception
-    logging.warn(
-        f"\n\n ==== \n Updating Task with task_id={request.task_id}\n * old name = '{task.name}'\n * new name = '{request.name}'\n ==== \n"
-    )
+
+    logging.warn(f"Updating '{task.name}' to '{request.name}'")
     task.name = request.name
 
 
@@ -77,12 +76,13 @@ class ToggleTaskCompleteRequest(BaseModel):
 async def toggle_task_complete(
     request: ToggleTaskCompleteRequest,
 ) -> None:
-    logging.warn(
-        f"\n\n ==== \n Setting Task with task_id={request.task_id} to {'incomplete' if request.completed is None else 'complete'}\n ==== \n"
-    )
     task = demo_tasks.get_task(request.task_id)
     if task is None:
         raise Exception
+
+    logging.warn(
+        f"Setting '{task.name}' to {'incomplete' if request.completed is None else 'complete'}"
+    )
     task.completed = request.completed
 
 
@@ -95,5 +95,9 @@ class DeleteTaskRequest(BaseModel):
 async def delete_task(
     request: DeleteTaskRequest,
 ) -> None:
-    logging.warn(f"\n\n ==== \n Deleting Task with task_id={request.task_id}\n ==== \n")
+    task = demo_tasks.get_task(request.task_id)
+    if task is None:
+        raise Exception
+
+    logging.warn(f"Deleting '{task.name}'")
     demo_tasks.delete_task(request.task_id)
