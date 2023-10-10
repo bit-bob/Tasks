@@ -110,11 +110,12 @@ class RepetitionCycle(EnumWithTitle):
 
 
 class Priority(EnumWithTitle):
-    ON_HOLD = 1
+    LOWEST = 1
     WAITING = 2
     LOW = 4
     MEDIUM = 8
     HIGH = 16
+    HIGHEST = 32
 
 
 class DemoTask:
@@ -164,7 +165,7 @@ class DemoTask:
         if self.blocked:
             return DemoTaskStatus.ON_HOLD
 
-        if self.priority == Priority.ON_HOLD:
+        if self.priority == Priority.LOWEST:
             return DemoTaskStatus.ON_HOLD
 
         if self._events is None or len(self._events) == 0:
@@ -676,11 +677,11 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Front End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                         ),
                         DemoTask(
                             "Back End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                         ),
                     ],
                 ),
@@ -723,7 +724,6 @@ tasks_task = DemoTask(
                     children=[
                         DemoTask(
                             "Design",
-                            priority=Priority.ON_HOLD,
                         ),
                         DemoTask(
                             "Front End",
@@ -755,7 +755,6 @@ tasks_task = DemoTask(
                     children=[
                         DemoTask(
                             "Design",
-                            priority=Priority.ON_HOLD,
                         ),
                         DemoTask(
                             "Front End",
@@ -963,7 +962,7 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Front End",
-                            priority=Priority.ON_HOLD,
+                            blocked=True,
                             children=[
                                 DemoTask(
                                     "Make a play / pause / playing pill component",
@@ -1443,11 +1442,12 @@ if __name__ == "__main__":
             tasks_task,
         ],
         # priorities_included=[
+        #     Priority.HIGHEST,
         #     Priority.HIGH,
         #     Priority.MEDIUM,
         #     Priority.LOW,
+        #     Priority.LOWEST,
         #     Priority.WAITING,
-        #     Priority.ON_HOLD,
         # ],
         # statuses_included=[
         #     DemoTaskStatus.NOT_STARTED,
@@ -1465,11 +1465,12 @@ else:
             tasks_task,
         ],
         priorities_included=[
+            Priority.HIGHEST,
             Priority.HIGH,
             Priority.MEDIUM,
             # Priority.LOW,
+            # Priority.LOWEST,
             # Priority.WAITING,
-            # Priority.ON_HOLD,
         ],
         statuses_included=[
             DemoTaskStatus.NOT_STARTED,
