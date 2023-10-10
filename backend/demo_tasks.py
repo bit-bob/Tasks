@@ -439,6 +439,8 @@ tasks_task = DemoTask(
                 DemoTaskEventComplete([2023, 10, 3, 18, 16]),
                 DemoTaskEventStart([2023, 10, 5, 16, 15]),
                 DemoTaskEventComplete([2023, 10, 5, 16, 42]),
+                DemoTaskEventStart([2023, 10, 10, 17, 18]),
+                DemoTaskEventComplete([2023, 10, 10, 18, 36]),
             ],
         ),
         DemoTask(
@@ -814,9 +816,15 @@ tasks_task = DemoTask(
                             children=[
                                 DemoTask(
                                     "Pick a db",
+                                    events=[
+                                        DemoTaskEventComplete([2023,10,10,19,18]),
+                                    ],
                                 ),
                                 DemoTask(
-                                    "Make the db and tables",
+                                    "Make the db",
+                                ),
+                                DemoTask(
+                                    "Make the tables",
                                     blocked=True,
                                 ),
                                 DemoTask(
