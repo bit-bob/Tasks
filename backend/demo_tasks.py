@@ -238,11 +238,174 @@ tasks_task = DemoTask(
     children=[
         DemoTask(
             "Plan",
+            repetition=RepetitionCycle.DAILY,
             events=[
                 DemoTaskEventStart([2023, 9, 27, 11, 52]),
                 DemoTaskEventPause([2023, 9, 27, 12, 45]),
                 DemoTaskEventStart([2023, 9, 28, 12, 30]),
                 DemoTaskEventPause([2023, 9, 28, 12, 45]),
+                DemoTaskEventStart([2023, 10, 5, 16, 37]),
+                DemoTaskEventComplete([2023, 10, 5, 16, 42]),
+                DemoTaskEventStart([2023, 10, 10, 12, 32]),
+                DemoTaskEventPause([2023, 10, 10, 13, 26]),
+                DemoTaskEventStart([2023, 10, 10, 17, 18]),
+                DemoTaskEventComplete([2023, 10, 10, 17, 38]),
+            ],
+            children=[
+                DemoTask(
+                    "Rewrite demo tasks to take more fields into account",
+                    priority=Priority.HIGH,
+                    events=[
+                        DemoTaskEventStart([2023, 9, 26, 12]),
+                        DemoTaskEventPause([2023, 9, 26, 14]),
+                        DemoTaskEventStart([2023, 9, 26, 16, 20]),
+                        DemoTaskEventPause([2023, 9, 26, 17, 35]),
+                        DemoTaskEventStart([2023, 9, 26, 18, 50]),
+                        DemoTaskEventPause([2023, 9, 26, 18, 59]),
+                        DemoTaskEventStart([2023, 9, 27, 12, 45]),
+                        DemoTaskEventPause([2023, 9, 27, 13, 40]),
+                        DemoTaskEventStart([2023, 9, 27, 16, 23]),
+                        DemoTaskEventPause([2023, 9, 27, 17, 12]),
+                        DemoTaskEventStart([2023, 9, 28, 10, 35]),
+                        DemoTaskEventPause([2023, 9, 28, 11, 10]),
+                        DemoTaskEventStart([2023, 10, 3, 13, 23]),
+                        DemoTaskEventPause([2023, 10, 3, 14, 5]),
+                        DemoTaskEventStart([2023, 10, 3, 14, 37]),
+                        DemoTaskEventPause([2023, 10, 3, 17, 5]),
+                        DemoTaskEventStart([2023, 10, 3, 17, 43]),
+                        DemoTaskEventPause([2023, 10, 3, 18, 1]),
+                        DemoTaskEventStart([2023, 10, 3, 18, 16]),
+                        DemoTaskEventPause([2023, 10, 3, 18, 41]),
+                    ],
+                    children=[
+                        DemoTask(
+                            "Add tasks as you do them",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 6, 12]),
+                                DemoTaskEventComplete([2023, 10, 6, 12, 25]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Split DemoTasks and DemoTaskEvents into different structures so it mirrors the db more closely and makes it easier to see what order events were in",
+                            priority=Priority.MEDIUM,
+                        ),
+                        DemoTask(
+                            "Add Dropped Events",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 13, 41]),
+                                DemoTaskEventComplete([2023, 10, 5, 13, 46]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Treat Tasks with a start date in the future as On Hold",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 14, 2]),
+                                DemoTaskEventComplete([2023, 10, 5, 14, 46]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Make it clearer when tasks are complete or not",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 15, 53]),
+                                DemoTaskEventComplete([2023, 10, 5, 16, 13]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Print demo tasks more clearly when this file is run directly",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 6, 12, 25]),
+                                DemoTaskEventComplete([2023, 10, 6, 13, 6]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Make Blocked a bool",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 6, 14, 45]),
+                                DemoTaskEventComplete([2023, 10, 6, 14, 50]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Add Urgency",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 6, 14, 30]),
+                                DemoTaskEventPause([2023, 10, 6, 17, 30]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Add Defer Until Events",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 6, 14, 30]),
+                                DemoTaskEventPause([2023, 10, 6, 17, 30]),
+                            ],
+                        ),
+                    ],
+                ),
+                DemoTask(
+                    "Add Demo Tasks From Notion",
+                    children=[
+                        DemoTask(
+                            "Manually copy tasks",
+                            events=[
+                                DemoTaskEventStart([2023, 9, 26, 16, 15]),
+                                DemoTaskEventPause([2023, 9, 26, 16, 20]),
+                                DemoTaskEventStart([2023, 9, 26, 21, 10]),
+                                DemoTaskEventPause([2023, 9, 26, 21, 25]),
+                                DemoTaskEventStart([2023, 9, 27, 16, 2]),
+                                DemoTaskEventPause([2023, 9, 27, 16, 23]),
+                                DemoTaskEventStart([2023, 9, 28, 12, 45]),
+                                DemoTaskEventPause([2023, 9, 28, 12, 55]),
+                                DemoTaskEventStart([2023, 9, 28, 13, 56]),
+                                DemoTaskEventPause([2023, 9, 28, 14, 42]),
+                                DemoTaskEventStart([2023, 9, 30, 9, 55]),
+                                DemoTaskEventPause([2023, 9, 30, 10, 30]),
+                                DemoTaskEventStart([2023, 10, 5, 13, 37]),
+                                DemoTaskEventPause([2023, 10, 5, 15, 53]),
+                            ],
+                        ),
+                        DemoTask(
+                            "Option 1 - CSV Export then Import",
+                            priority=Priority.LOW,
+                            children=[
+                                DemoTask(
+                                    "Export your notion tasks to a csv",
+                                ),
+                                DemoTask(
+                                    "Filter your notion tasks to exclude tasks you want to keep in notion",
+                                ),
+                                DemoTask(
+                                    "Store the exported tasks somewhere secure",
+                                ),
+                                DemoTask(
+                                    "Delete exported tasks from notion",
+                                ),
+                                DemoTask(
+                                    "Write a script to import demo tasks from a csv",
+                                ),
+                            ],
+                        ),
+                        DemoTask(
+                            "Option 2 - Direct Import",
+                            priority=Priority.LOW,
+                            children=[
+                                DemoTask(
+                                    "Write a script to get your notion tasks using the api",
+                                ),
+                                DemoTask(
+                                    "Keep track of which tasks have been exported",
+                                ),
+                                DemoTask(
+                                    "Store the exported tasks somewhere secure",
+                                ),
+                                DemoTask(
+                                    "Delete exported tasks from notion",
+                                ),
+                                DemoTask(
+                                    "Make the script import the demo tasks to this app",
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
             ],
         ),
         DemoTask(
@@ -253,11 +416,211 @@ tasks_task = DemoTask(
                 DemoTaskEventStart([2023, 10, 3, 18, 1]),
                 DemoTaskEventComplete([2023, 10, 3, 18, 16]),
                 DemoTaskEventStart([2023, 10, 5, 16, 15]),
-                DemoTaskEventComplete([2023, 10, 5, 16, 38]),
+                DemoTaskEventComplete([2023, 10, 5, 16, 42]),
             ],
         ),
         DemoTask(
-            "Day 0 - CRUD and Complete with a Mock Back End",
+            "Infrastructure",
+            children=[
+                DemoTask(
+                    "Mobile Apps",
+                    priority=Priority.LOW,
+                    children=[
+                        DemoTask(
+                            "Plan",
+                            events=[
+                                DemoTaskEventStart([2023, 10, 10, 13, 26]),
+                                DemoTaskEventPause([2023, 10, 10, 13, 40]),
+                            ],
+                            children=[
+                                DemoTask(
+                                    "Make Decisions",
+                                    children=[
+                                        DemoTask(
+                                            "Do we want to run builds daily or only on commits with specific tags?",
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
+                        DemoTask(
+                            "Setup Capacitor",
+                        ),
+                        DemoTask(
+                            "iOS / Apple",
+                            children=[
+                                DemoTask(
+                                    "Build the app using Firebase",
+                                    children=[
+                                        DemoTask(
+                                            "Build manually",
+                                            events=[
+                                                DemoTaskEventComplete(
+                                                    [2023, 10, 8, 21, 38]
+                                                ),
+                                            ],
+                                        ),
+                                        DemoTask(
+                                            "Build automatically",
+                                            events=[
+                                                DemoTaskEventComplete(
+                                                    [2023, 10, 8, 21, 38]
+                                                ),
+                                            ],
+                                            children=[
+                                                DemoTask(
+                                                    "Add the secrets to github so firebase can access the api keys",
+                                                ),
+                                            ],
+                                        ),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "Get the IOS App on Helina's phone",
+                                    priority=Priority.HIGH,
+                                    children=[
+                                        DemoTask(
+                                            "Create the app in apple",
+                                        ),
+                                        DemoTask(
+                                            "Tell firebase where the app is",
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
+                        DemoTask(
+                            "Android",
+                            children=[
+                                DemoTask(
+                                    "Build the app using Firebase",
+                                    children=[
+                                        DemoTask(
+                                            "Build manually",
+                                            events=[
+                                                DemoTaskEventComplete(
+                                                    [2023, 9, 25, 21, 49, 53]
+                                                ),
+                                            ],
+                                        ),
+                                        DemoTask(
+                                            "Build automatically",
+                                            children=[
+                                                DemoTask(
+                                                    "Log into firebase",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 40]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "Go to the firebase console",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 41]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "get luke to add helina as a member / owner",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 42]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "accept the invite",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 42]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "get luke to make a service account for helina",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 44]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "get the credentials to distribute the app through firebase, see https://github.com/wzieba/Firebase-Distribution-Github-Action/wiki/FIREBASE_TOKEN-migration",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 44]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "add the firebase credentials to the github secrets",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 50]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "add the 'upload artifact to Firebase App Distribution' to the capacitor CI",
+                                                    events=[
+                                                        DemoTaskEventComplete(
+                                                            [2023, 10, 10, 13, 52]
+                                                        ),
+                                                    ],
+                                                ),
+                                                DemoTask(
+                                                    "Follow https://medium.com/firebase-developers/quickly-distribute-app-with-firebase-app-distribution-using-github-actions-fastlane-c7d8eca18ee0",
+                                                    events=[
+                                                        DemoTaskEventStart(
+                                                            [2023, 10, 10, 13, 52]
+                                                        ),
+                                                        DemoTaskEventPause(
+                                                            [2023, 10, 10, 2, 46]
+                                                        ),
+                                                        DemoTaskEventPause(
+                                                            [2023, 10, 10, 17, 7]
+                                                        ),
+                                                        DemoTaskEventStart(
+                                                            [2023, 10, 10, 17, 18]
+                                                        ),
+                                                    ],
+                                                ),
+                                            ],
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
+                        DemoTask(
+                            "Trigger App builds more intentionally, not just every commit",
+                            children=[
+                                DemoTask(
+                                    "Figure out how do we do this",
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+                DemoTask(
+                    "Setup the staging environment",
+                ),
+                DemoTask(
+                    "Automate release notes",
+                    children=[
+                        DemoTask(
+                            "Figure out how do we do this",
+                        ),
+                    ],
+                ),
+                DemoTask(
+                    "other cool things",
+                ),
+            ],
+        ),
+        DemoTask(
+            "Day 0 - CRUD and Complete",
             children=[
                 DemoTask(
                     "Create",
@@ -418,132 +781,23 @@ tasks_task = DemoTask(
                         ),
                     ],
                 ),
-            ],
-        ),
-        DemoTask(
-            "Day 1 - Basic Use",
-            children=[
                 DemoTask(
-                    "Rewrite demo tasks to take more fields into account",
-                    priority=Priority.HIGH,
-                    events=[
-                        DemoTaskEventStart([2023, 9, 26, 12]),
-                        DemoTaskEventPause([2023, 9, 26, 14]),
-                        DemoTaskEventStart([2023, 9, 26, 16, 20]),
-                        DemoTaskEventPause([2023, 9, 26, 17, 35]),
-                        DemoTaskEventStart([2023, 9, 26, 18, 50]),
-                        DemoTaskEventPause([2023, 9, 26, 18, 59]),
-                        DemoTaskEventStart([2023, 9, 27, 12, 45]),
-                        DemoTaskEventPause([2023, 9, 27, 13, 40]),
-                        DemoTaskEventStart([2023, 9, 27, 16, 23]),
-                        DemoTaskEventPause([2023, 9, 27, 17, 12]),
-                        DemoTaskEventStart([2023, 9, 28, 10, 35]),
-                        DemoTaskEventPause([2023, 9, 28, 11, 10]),
-                        DemoTaskEventStart([2023, 10, 3, 13, 23]),
-                        DemoTaskEventPause([2023, 10, 3, 14, 5]),
-                        DemoTaskEventStart([2023, 10, 3, 14, 37]),
-                        DemoTaskEventPause([2023, 10, 3, 17, 5]),
-                        DemoTaskEventStart([2023, 10, 3, 17, 43]),
-                        DemoTaskEventPause([2023, 10, 3, 18, 1]),
-                        DemoTaskEventStart([2023, 10, 3, 18, 16]),
-                        DemoTaskEventPause([2023, 10, 3, 18, 41]),
-                    ],
+                    "Persist tasks in a Database",
                     children=[
                         DemoTask(
-                            "Split DemoTasks and DemoTaskEvents into different structures so it mirrors the db more closely and makes it easier to see what order events were in",
-                            priority=Priority.MEDIUM,
-                        ),
-                        DemoTask(
-                            "Add Dropped Events",
-                            priority=Priority.MEDIUM,
-                            events=[
-                                DemoTaskEventStart([2023, 10, 5, 13, 41]),
-                                DemoTaskEventComplete([2023, 10, 5, 13, 46]),
-                            ],
-                        ),
-                        DemoTask(
-                            "Treat Tasks with a start date in the future as On Hold",
-                            priority=Priority.MEDIUM,
-                            events=[
-                                DemoTaskEventStart([2023, 10, 5, 14, 2]),
-                                DemoTaskEventPause([2023, 10, 5, 14, 46]),
-                            ],
-                        ),
-                        DemoTask(
-                            "Make it clearer when tasks are complete or not",
-                            priority=Priority.MEDIUM,
-                            events=[
-                                DemoTaskEventStart([2023, 10, 5, 15, 53]),
-                                DemoTaskEventPause([2023, 10, 5, 16, 13]),
-                            ],
-                        ),
-                        DemoTask(
-                            "Add Urgency",
-                            priority=Priority.MEDIUM,
-                        ),
-                    ],
-                ),
-                DemoTask(
-                    "Add Demo Tasks From Notion",
-                    children=[
-                        DemoTask(
-                            "Manually copy tasks",
-                            events=[
-                                DemoTaskEventStart([2023, 9, 26, 16, 15]),
-                                DemoTaskEventPause([2023, 9, 26, 16, 20]),
-                                DemoTaskEventStart([2023, 9, 26, 21, 10]),
-                                DemoTaskEventPause([2023, 9, 26, 21, 25]),
-                                DemoTaskEventStart([2023, 9, 27, 16, 2]),
-                                DemoTaskEventPause([2023, 9, 27, 16, 23]),
-                                DemoTaskEventStart([2023, 9, 28, 12, 45]),
-                                DemoTaskEventPause([2023, 9, 28, 12, 55]),
-                                DemoTaskEventStart([2023, 9, 28, 13, 56]),
-                                DemoTaskEventPause([2023, 9, 28, 14, 42]),
-                                DemoTaskEventStart([2023, 9, 30, 9, 55]),
-                                DemoTaskEventPause([2023, 9, 30, 10, 30]),
-                                DemoTaskEventStart([2023, 10, 5, 13, 37]),
-                                DemoTaskEventPause([2023, 10, 5, 15, 53]),
-                            ],
-                        ),
-                        DemoTask(
-                            "Option 1 - CSV Export then Import",
-                            priority=Priority.LOW,
+                            "Back End",
                             children=[
                                 DemoTask(
-                                    "Export your notion tasks to a csv",
+                                    "Pick a db",
                                 ),
                                 DemoTask(
-                                    "Filter your notion tasks to exclude tasks you want to keep in notion",
+                                    "Make the db and tables",
                                 ),
                                 DemoTask(
-                                    "Store the exported tasks somewhere secure",
+                                    "Write a script to add demo data to the db",
                                 ),
                                 DemoTask(
-                                    "Delete exported tasks from notion",
-                                ),
-                                DemoTask(
-                                    "Write a script to import demo tasks from a csv",
-                                ),
-                            ],
-                        ),
-                        DemoTask(
-                            "Option 2 - Direct Import",
-                            priority=Priority.LOW,
-                            children=[
-                                DemoTask(
-                                    "Write a script to get your notion tasks using the api",
-                                ),
-                                DemoTask(
-                                    "Keep track of which tasks have been exported",
-                                ),
-                                DemoTask(
-                                    "Store the exported tasks somewhere secure",
-                                ),
-                                DemoTask(
-                                    "Delete exported tasks from notion",
-                                ),
-                                DemoTask(
-                                    "Make the script import the demo tasks to this app",
+                                    "Consider taking database dumps regularly for backups, see https://linuxhint.com/automatically-backup-mysql-database-using-python/",
                                 ),
                             ],
                         ),
@@ -600,18 +854,45 @@ tasks_task = DemoTask(
                                 ),
                                 DemoTask(
                                     "Add extra information to logs, see https://gist.github.com/liviaerxin/d320e33cbcddcc5df76dd92948e5be3b",
+                                    priority=Priority.LOW,
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 6, 14, 6]),
+                                        DemoTaskEventComplete([2023, 10, 6, 14, 30]),
+                                    ],
                                 ),
                                 DemoTask(
                                     "Store logs in a text file",
+                                    priority=Priority.LOW,
+                                    events=[
+                                        DemoTaskEventStart([2023, 10, 6, 14, 6]),
+                                        DemoTaskEventComplete([2023, 10, 6, 14, 30]),
+                                    ],
                                 ),
                             ],
                         ),
                         DemoTask(
                             "Test logs by using the app a few times",
-                            priority=Priority.ON_HOLD,
+                            events=[
+                                DemoTaskEventStart([2023, 10, 5, 16, 37]),
+                                DemoTaskEventComplete([2023, 10, 5, 16, 42]),
+                            ],
                         ),
                     ],
                 ),
+                DemoTask(
+                    "Fix Bugs",
+                    priority=Priority.HIGH,
+                    children=[
+                        DemoTask(
+                            "If you edit a task then immediately complete it, if the update request hasn't been sent to the backend yet, the update doesn't persist",
+                        ),
+                    ],
+                ),
+            ],
+        ),
+        DemoTask(
+            "Day 1 - Basic Use",
+            children=[
                 DemoTask(
                     "Events",
                     priority=Priority.LOW,
@@ -648,7 +929,7 @@ tasks_task = DemoTask(
                                 ),
                                 DemoTask(
                                     "Design how users will see event history",
-                                    priority=Priority.ON_HOLD,
+                                    priority=Priority.LOW,
                                 ),
                             ],
                         ),
@@ -666,7 +947,6 @@ tasks_task = DemoTask(
                         ),
                         DemoTask(
                             "Back End",
-                            priority=Priority.ON_HOLD,
                             children=[
                                 DemoTask(
                                     "Add 'Events' to the task model",
@@ -802,59 +1082,96 @@ tasks_task = DemoTask(
                     ],
                 ),
                 DemoTask(
-                    "Get Mobile Apps",
-                    priority=Priority.LOW,
+                    "Goals",
                     children=[
                         DemoTask(
-                            "Get an Android App",
-                            events=[
-                                DemoTaskEventComplete([2023, 9, 25, 21, 49, 53]),
+                            "Design",
+                        ),
+                        DemoTask(
+                            "Front End",
+                        ),
+                        DemoTask(
+                            "Back End",
+                        ),
+                    ],
+                ),
+                DemoTask(
+                    "Statistics Page",
+                    children=[
+                        DemoTask(
+                            "Page",
+                            children=[
+                                DemoTask(
+                                    "Design",
+                                ),
+                                DemoTask(
+                                    "Front End",
+                                ),
+                                DemoTask(
+                                    "Back End",
+                                ),
                             ],
                         ),
                         DemoTask(
-                            "Get an IOS App",
+                            "Graphs",
                             children=[
                                 DemoTask(
-                                    "Get the IOS App on my phone",
-                                    priority=Priority.HIGH,
+                                    "aTimeLogger style graphs",
+                                    children=[
+                                        DemoTask(
+                                            "Design",
+                                        ),
+                                        DemoTask(
+                                            "Front End",
+                                        ),
+                                        DemoTask(
+                                            "Back End",
+                                        ),
+                                    ],
+                                ),
+                                DemoTask(
+                                    "GitHub / Anki Style completion squares",
+                                    children=[
+                                        DemoTask(
+                                            "Design",
+                                        ),
+                                        DemoTask(
+                                            "Front End",
+                                        ),
+                                        DemoTask(
+                                            "Back End",
+                                        ),
+                                    ],
                                 ),
                             ],
+                        ),
+                    ],
+                ),
+                DemoTask(
+                    "iPhone Dynamic Island Task Status",
+                ),
+                DemoTask(
+                    "Iphone Widget",
+                    children=[
+                        DemoTask(
+                            "Task Status",
+                        ),
+                        DemoTask(
+                            "Stats",
                         ),
                     ],
                 ),
             ],
         ),
         DemoTask(
-            "Day 2 - Users, Persistence and Settings",
-            priority=Priority.ON_HOLD,
+            "Day ? - Users, Persistence and Settings",
             children=[
                 DemoTask(
                     "Make Users",
                 ),
                 DemoTask(
-                    "Persist tasks in a Database",
-                    children=[
-                        DemoTask(
-                            "Back End",
-                            children=[
-                                DemoTask(
-                                    "Pick a db",
-                                ),
-                                DemoTask(
-                                    "Make the db and tables",
-                                ),
-                                DemoTask(
-                                    "Write a script to add demo data to the db",
-                                ),
-                                DemoTask(
-                                    "Consider taking database dumps regularly for backups, see https://linuxhint.com/automatically-backup-mysql-database-using-python/"
-                                ),
-                            ],
-                        ),
-                    ],
-                ),
-                DemoTask(
                     "Add App Wide Settings",
+                    priority=Priority.LOW,
                     children=[
                         DemoTask(
                             "Colour Themes",
@@ -868,7 +1185,7 @@ tasks_task = DemoTask(
         ),
         DemoTask(
             "Day 3 - Everything Else",
-            priority=Priority.ON_HOLD,
+            priority=Priority.LOW,
             children=[
                 # "Priority": {
                 #     "Design": [
@@ -1017,7 +1334,9 @@ def get_next_task(
     priorities_included: Optional[List[Priority]] = None,
     statuses_included: Optional[List[DemoTaskStatus]] = None,
 ) -> Generator:
-    tasks_grouped = {s: {p: [] for p in Priority} for s in DemoTaskStatus}
+    tasks_grouped: dict[DemoTaskStatus, dict[Priority, list[DemoTask]]] = {
+        s: {p: [] for p in Priority} for s in DemoTaskStatus
+    }
 
     for demo_task in tasks_included:
         for child in get_grandchildren(demo_task):
