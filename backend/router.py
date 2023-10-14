@@ -42,6 +42,7 @@ async def get_tasks() -> GetTasksResponse:
             TaskModel(
                 id=t.id,
                 name=t.name,
+                created_date=t.created_date,
                 completed_date=t.completed_date,
             )
             for t in demo_tasks.get_tasks()

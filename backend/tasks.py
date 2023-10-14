@@ -11,8 +11,8 @@ class Task:
     ) -> None:
         self.id = uuid4()
         self.name = name
+        self.created_date = datetime.now()
         self.completed_date = completed_date
-        self.created = datetime.now()
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -27,8 +27,8 @@ class Task:
         if (self.completed_date is None and other.completed_date is None) or (
             self.completed_date == other.completed_date
         ):
-            # if both are incomplete or completed at the same time, check created timestamp
-            return self.created < other.created
+            # if both are incomplete or completed at the same time, check created_date
+            return self.created_date < other.created_date
 
         if self.completed_date is None:
             # if other is complete, other is lt
