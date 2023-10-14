@@ -817,7 +817,7 @@ tasks_task = DemoTask(
                                 DemoTask(
                                     "Pick a db",
                                     events=[
-                                        DemoTaskEventComplete([2023,10,10,19,18]),
+                                        DemoTaskEventComplete([2023, 10, 10, 19, 18]),
                                     ],
                                 ),
                                 DemoTask(
