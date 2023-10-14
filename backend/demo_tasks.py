@@ -360,6 +360,19 @@ tasks_task = DemoTask(
                                 DemoTaskEventPause([2023, 10, 6, 17, 30]),
                             ],
                         ),
+                        DemoTask(
+                            "Descriptions",
+                            # description="add descriptions to tasks",
+                            priority=Priority.LOW,
+                        ),
+                        DemoTask(
+                            "Split this into initial tasks in the full implementations",
+                            priority=Priority.LOWEST,
+                        ),
+                        DemoTask(
+                            "Split this into separate files for each group of tasks",
+                            priority=Priority.LOWEST,
+                        ),
                     ],
                 ),
                 DemoTask(
@@ -441,6 +454,34 @@ tasks_task = DemoTask(
                 DemoTaskEventComplete([2023, 10, 5, 16, 42]),
                 DemoTaskEventStart([2023, 10, 10, 17, 18]),
                 DemoTaskEventComplete([2023, 10, 10, 18, 36]),
+                DemoTaskEventStart([2023, 10, 23, 16, 1]),
+                DemoTaskEventComplete([2023, 10, 23, 16, 8]),
+            ],
+        ),
+        DemoTask(
+            "Clean Code",
+            repetition=RepetitionCycle.DAILY,
+            events=[
+                DemoTaskEventStart([2023, 10, 14, 20, 40]),
+                DemoTaskEventComplete([2023, 10, 14, 21, 55]),
+            ],
+        ),
+        DemoTask(
+            "Devex",
+            children=[
+                DemoTask(
+                    "Run the app locally",
+                    children=[
+                        DemoTask(
+                            "Fix error `npx: No such file or directory`",
+                            priority=Priority.HIGH,
+                            events=[
+                                DemoTaskEventStart([2023, 10, 23, 14, 10]),
+                                DemoTaskEventComplete([2023, 10, 23, 14, 35]),
+                            ],
+                        ),
+                    ],
+                ),
             ],
         ),
         DemoTask(
@@ -843,12 +884,39 @@ tasks_task = DemoTask(
                                     "Make the db",
                                 ),
                                 DemoTask(
-                                    "Make the tables",
-                                    blocked=True,
+                                    "Make the tasks table",
+                                ),
+                                DemoTask(
+                                    "Print the tables",
+                                ),
+                                DemoTask(
+                                    "Direct each endpoint to the db",
+                                    children=[
+                                        DemoTask(
+                                            "create_task",
+                                        ),
+                                        DemoTask(
+                                            "get_tasks",
+                                        ),
+                                        DemoTask(
+                                            "get_task",
+                                        ),
+                                        DemoTask(
+                                            "update_task_name",
+                                        ),
+                                        DemoTask(
+                                            "delete_task",
+                                        ),
+                                        DemoTask(
+                                            "update_task_completed_date",
+                                        ),
+                                    ],
                                 ),
                                 DemoTask(
                                     "Write a script to add demo data to the db",
-                                    blocked=True,
+                                ),
+                                DemoTask(
+                                    "Merge the feature with the main branch",
                                 ),
                                 DemoTask(
                                     "Consider taking database dumps regularly for backups, see https://linuxhint.com/automatically-backup-mysql-database-using-python/",
@@ -1210,6 +1278,14 @@ tasks_task = DemoTask(
                                 ),
                             ],
                         ),
+                        DemoTask(
+                            "Performance Improvements",
+                            children=[
+                                DemoTask(
+                                    "Consider having a separate column db / data warehouse for read only access to tasks for statistics",
+                                ),
+                            ],
+                        ),
                     ],
                 ),
                 DemoTask(
@@ -1255,6 +1331,17 @@ tasks_task = DemoTask(
             "Day 3 - Everything Else",
             blocked=True,
             children=[
+                DemoTask(
+                    "Generate tasks from an RSS feed",
+                    children=[
+                        DemoTask(
+                            "Read https://mr-destructive.github.io/techstructive-blog/python-feedparser/ for a package to do this in python"
+                        ),
+                        DemoTask(
+                            "See if you can an RSS feed from Bilibili like in https://docs.rsshub.app/routes/social-media#bilibili"
+                        ),
+                    ],
+                ),
                 # "Priority": {
                 #     "Design": [
                 #         "Design how the 'Priority' will be shown in figma",
@@ -1415,7 +1502,7 @@ def get_next_task(
             if priority not in priorities_included:
                 continue
 
-        for status in DemoTaskStatus:
+        for status in reversed(DemoTaskStatus):
             if statuses_included is not None:
                 if status not in statuses_included:
                     continue
