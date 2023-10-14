@@ -42,7 +42,7 @@ async def get_tasks() -> GetTasksResponse:
             TaskModel(
                 id=t.id,
                 name=t.name,
-                completed=t.completed,
+                completed_date=t.completed_date,
             )
             for t in demo_tasks.get_tasks()
         ],
@@ -69,7 +69,7 @@ async def update_task(
 
 class ToggleTaskCompleteRequest(BaseModel):
     task_id: UUID
-    completed: Optional[datetime]
+    completed_date: Optional[datetime]
 
 
 @router.post("/tasks/complete")
@@ -81,9 +81,9 @@ async def toggle_task_complete(
         raise Exception
 
     logging.warn(
-        f"Setting '{task.name}' to {'incomplete' if request.completed is None else 'complete'}"
+        f"Setting '{task.name}' to {'incomplete' if request.completed_date is None else 'complete'}"
     )
-    task.completed = request.completed
+    task.completed_date = request.completed_date
 
 
 # Delete

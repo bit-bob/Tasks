@@ -1420,7 +1420,7 @@ def get_next_task(
                     # + task.priority.name
                     # + " - "
                     + task.path,
-                    completed=task.last_completed_date
+                    completed_date=task.last_completed_date
                     if status == DemoTaskStatus.COMPLETE
                     else None,
                 )

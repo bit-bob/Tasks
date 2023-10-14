@@ -30,7 +30,7 @@ export interface ToggleTaskCompleteRequest {
      * @type {Date}
      * @memberof ToggleTaskCompleteRequest
      */
-    completed: Date | null;
+    completedDate: Date | null;
 }
 
 /**
@@ -39,7 +39,7 @@ export interface ToggleTaskCompleteRequest {
 export function instanceOfToggleTaskCompleteRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "taskId" in value;
-    isInstance = isInstance && "completed" in value;
+    isInstance = isInstance && "completedDate" in value;
 
     return isInstance;
 }
@@ -55,7 +55,7 @@ export function ToggleTaskCompleteRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'taskId': json['task_id'],
-        'completed': (json['completed'] === null ? null : new Date(json['completed'])),
+        'completedDate': (json['completed_date'] === null ? null : new Date(json['completed_date'])),
     };
 }
 
@@ -69,7 +69,7 @@ export function ToggleTaskCompleteRequestToJSON(value?: ToggleTaskCompleteReques
     return {
         
         'task_id': value.taskId,
-        'completed': (value.completed === null ? null : value.completed.toISOString()),
+        'completed_date': (value.completedDate === null ? null : value.completedDate.toISOString()),
     };
 }
 

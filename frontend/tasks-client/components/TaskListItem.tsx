@@ -89,7 +89,7 @@ export const TaskListItem = ({
         ref={ref}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
-        isCompleted={Boolean(task.completed)}
+        isCompleted={Boolean(task.completedDate)}
         value={task.name}
         onChange={(e) => onEdit?.(e.target.value)}
       />
@@ -98,7 +98,7 @@ export const TaskListItem = ({
       </Button>
       <IconButton
         onClick={onToggleComplete}
-        type={task.completed ? "circle.checked" : "circle"}
+        type={task.completedDate ? "circle.checked" : "circle"}
       />
     </Container>
   );

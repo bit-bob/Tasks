@@ -36,7 +36,7 @@ export interface TaskModel {
      * @type {Date}
      * @memberof TaskModel
      */
-    completed: Date | null;
+    completedDate: Date | null;
 }
 
 /**
@@ -46,7 +46,7 @@ export function instanceOfTaskModel(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "completed" in value;
+    isInstance = isInstance && "completedDate" in value;
 
     return isInstance;
 }
@@ -63,7 +63,7 @@ export function TaskModelFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'id': json['id'],
         'name': json['name'],
-        'completed': (json['completed'] === null ? null : new Date(json['completed'])),
+        'completedDate': (json['completed_date'] === null ? null : new Date(json['completed_date'])),
     };
 }
 
@@ -78,7 +78,7 @@ export function TaskModelToJSON(value?: TaskModel | null): any {
         
         'id': value.id,
         'name': value.name,
-        'completed': (value.completed === null ? null : value.completed.toISOString()),
+        'completed_date': (value.completedDate === null ? null : value.completedDate.toISOString()),
     };
 }
 

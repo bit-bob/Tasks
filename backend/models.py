@@ -8,4 +8,4 @@ from pydantic import BaseModel
 class TaskModel(BaseModel):
     id: UUID
     name: str
-    completed: Optional[datetime]
+    completed_date: Optional[datetime]

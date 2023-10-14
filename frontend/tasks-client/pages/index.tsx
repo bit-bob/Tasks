@@ -80,7 +80,7 @@ export default function Home() {
             await TasksService.toggleTaskComplete({
               toggleTaskCompleteRequest: {
                 taskId: task.id,
-                completed: task.completed ? null : new Date(),
+                completedDate: task.completedDate ? null : new Date(),
               },
             });
             await refresh();

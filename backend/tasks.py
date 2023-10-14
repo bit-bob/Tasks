@@ -7,11 +7,11 @@ class Task:
     def __init__(
         self,
         name: str,
-        completed: Optional[datetime] = None,
+        completed_date: Optional[datetime] = None,
     ) -> None:
         self.id = uuid4()
         self.name = name
-        self.completed = completed
+        self.completed_date = completed_date
         self.created = datetime.now()
 
     def __str__(self) -> str:
@@ -24,22 +24,22 @@ class Task:
         self,
         other: "Task",
     ):
-        if (self.completed is None and other.completed is None) or (
-            self.completed == other.completed
+        if (self.completed_date is None and other.completed_date is None) or (
+            self.completed_date == other.completed_date
         ):
             # if both are incomplete or completed at the same time, check created timestamp
             return self.created < other.created
 
-        if self.completed is None:
+        if self.completed_date is None:
             # if other is complete, other is lt
             return True
 
-        if other.completed is None:
+        if other.completed_date is None:
             # if self is complete, self is lt
             return False
 
-        # if both are complete, check completed timestamp
-        return self.completed < other.completed
+        # if both are complete, check completed_date
+        return self.completed_date < other.completed_date
 
 
 class TaskList:
