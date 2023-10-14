@@ -447,6 +447,25 @@ tasks_task = DemoTask(
             "Infrastructure",
             children=[
                 DemoTask(
+                    "Code Generation",
+                    children=[
+                        DemoTask(
+                            "OpenAPI",
+                            children=[
+                                DemoTask(
+                                    "Fix Bugs",
+                                    children=[
+                                        DemoTask(
+                                            "Fix old files not being deleted when models changed and files are renamed",
+                                            priority=Priority.HIGH,
+                                        ),
+                                    ],
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+                DemoTask(
                     "Mobile Apps",
                     priority=Priority.LOW,
                     children=[

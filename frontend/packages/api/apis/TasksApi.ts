@@ -20,7 +20,7 @@ import type {
   GetTasksResponse,
   HTTPValidationError,
   ToggleTaskCompleteRequest,
-  UpdateTaskRequest,
+  UpdateTaskNameRequest,
 } from '../models/index';
 import {
     CreateTaskRequestFromJSON,
@@ -33,8 +33,8 @@ import {
     HTTPValidationErrorToJSON,
     ToggleTaskCompleteRequestFromJSON,
     ToggleTaskCompleteRequestToJSON,
-    UpdateTaskRequestFromJSON,
-    UpdateTaskRequestToJSON,
+    UpdateTaskNameRequestFromJSON,
+    UpdateTaskNameRequestToJSON,
 } from '../models/index';
 
 export interface CreateTaskOperationRequest {
@@ -49,8 +49,8 @@ export interface ToggleTaskCompleteOperationRequest {
     toggleTaskCompleteRequest: ToggleTaskCompleteRequest;
 }
 
-export interface UpdateTaskOperationRequest {
-    updateTaskRequest: UpdateTaskRequest;
+export interface UpdateTaskNameOperationRequest {
+    updateTaskNameRequest: UpdateTaskNameRequest;
 }
 
 /**
@@ -181,11 +181,11 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update Task
+     * Update Task Name
      */
-    async updateTaskRaw(requestParameters: UpdateTaskOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.updateTaskRequest === null || requestParameters.updateTaskRequest === undefined) {
-            throw new runtime.RequiredError('updateTaskRequest','Required parameter requestParameters.updateTaskRequest was null or undefined when calling updateTask.');
+    async updateTaskNameRaw(requestParameters: UpdateTaskNameOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.updateTaskNameRequest === null || requestParameters.updateTaskNameRequest === undefined) {
+            throw new runtime.RequiredError('updateTaskNameRequest','Required parameter requestParameters.updateTaskNameRequest was null or undefined when calling updateTaskName.');
         }
 
         const queryParameters: any = {};
@@ -195,21 +195,21 @@ export class TasksApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
-            path: `/tasks/update`,
+            path: `/tasks/update/name`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateTaskRequestToJSON(requestParameters.updateTaskRequest),
+            body: UpdateTaskNameRequestToJSON(requestParameters.updateTaskNameRequest),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
 
     /**
-     * Update Task
+     * Update Task Name
      */
-    async updateTask(requestParameters: UpdateTaskOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.updateTaskRaw(requestParameters, initOverrides);
+    async updateTaskName(requestParameters: UpdateTaskNameOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateTaskNameRaw(requestParameters, initOverrides);
     }
 
 }

@@ -51,14 +51,14 @@ async def get_tasks() -> GetTasksResponse:
 
 
 # Update
-class UpdateTaskRequest(BaseModel):
+class UpdateTaskNameRequest(BaseModel):
     task_id: UUID
     name: str
 
 
-@router.post("/tasks/update")
-async def update_task(
-    request: UpdateTaskRequest,
+@router.post("/tasks/update/name")
+async def update_task_name(
+    request: UpdateTaskNameRequest,
 ) -> None:
     task = demo_tasks.get_task(request.task_id)
     if task is None:

@@ -38,8 +38,8 @@ export default function Home() {
   }, []);
 
   const editTaskTitle = async (task: TaskModel, newTitle: string) => {
-    await TasksService.updateTask({
-      updateTaskRequest: {
+    await TasksService.updateTaskName({
+      updateTaskNameRequest: {
         taskId: task.id,
         name: newTitle,
       },

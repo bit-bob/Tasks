@@ -16,27 +16,27 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface UpdateTaskRequest
+ * @interface UpdateTaskNameRequest
  */
-export interface UpdateTaskRequest {
+export interface UpdateTaskNameRequest {
     /**
      * 
      * @type {string}
-     * @memberof UpdateTaskRequest
+     * @memberof UpdateTaskNameRequest
      */
     taskId: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateTaskRequest
+     * @memberof UpdateTaskNameRequest
      */
     name: string;
 }
 
 /**
- * Check if a given object implements the UpdateTaskRequest interface.
+ * Check if a given object implements the UpdateTaskNameRequest interface.
  */
-export function instanceOfUpdateTaskRequest(value: object): boolean {
+export function instanceOfUpdateTaskNameRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "taskId" in value;
     isInstance = isInstance && "name" in value;
@@ -44,11 +44,11 @@ export function instanceOfUpdateTaskRequest(value: object): boolean {
     return isInstance;
 }
 
-export function UpdateTaskRequestFromJSON(json: any): UpdateTaskRequest {
-    return UpdateTaskRequestFromJSONTyped(json, false);
+export function UpdateTaskNameRequestFromJSON(json: any): UpdateTaskNameRequest {
+    return UpdateTaskNameRequestFromJSONTyped(json, false);
 }
 
-export function UpdateTaskRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateTaskRequest {
+export function UpdateTaskNameRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateTaskNameRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -59,7 +59,7 @@ export function UpdateTaskRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function UpdateTaskRequestToJSON(value?: UpdateTaskRequest | null): any {
+export function UpdateTaskNameRequestToJSON(value?: UpdateTaskNameRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
