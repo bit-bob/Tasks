@@ -68,14 +68,14 @@ async def update_task_name(
     task.name = request.name
 
 
-class ToggleTaskCompleteRequest(BaseModel):
+class UpdateTaskCompletedDateRequest(BaseModel):
     task_id: UUID
     completed_date: Optional[datetime]
 
 
-@router.post("/tasks/complete")
-async def toggle_task_complete(
-    request: ToggleTaskCompleteRequest,
+@router.post("/tasks/update/completed_date")
+async def update_task_completed_date(
+    request: UpdateTaskCompletedDateRequest,
 ) -> None:
     task = demo_tasks.get_task(request.task_id)
     if task is None:

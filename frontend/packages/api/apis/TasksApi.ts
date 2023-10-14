@@ -19,7 +19,7 @@ import type {
   DeleteTaskRequest,
   GetTasksResponse,
   HTTPValidationError,
-  ToggleTaskCompleteRequest,
+  UpdateTaskCompletedDateRequest,
   UpdateTaskNameRequest,
 } from '../models/index';
 import {
@@ -31,8 +31,8 @@ import {
     GetTasksResponseToJSON,
     HTTPValidationErrorFromJSON,
     HTTPValidationErrorToJSON,
-    ToggleTaskCompleteRequestFromJSON,
-    ToggleTaskCompleteRequestToJSON,
+    UpdateTaskCompletedDateRequestFromJSON,
+    UpdateTaskCompletedDateRequestToJSON,
     UpdateTaskNameRequestFromJSON,
     UpdateTaskNameRequestToJSON,
 } from '../models/index';
@@ -45,8 +45,8 @@ export interface DeleteTaskOperationRequest {
     deleteTaskRequest: DeleteTaskRequest;
 }
 
-export interface ToggleTaskCompleteOperationRequest {
-    toggleTaskCompleteRequest: ToggleTaskCompleteRequest;
+export interface UpdateTaskCompletedDateOperationRequest {
+    updateTaskCompletedDateRequest: UpdateTaskCompletedDateRequest;
 }
 
 export interface UpdateTaskNameOperationRequest {
@@ -149,11 +149,11 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Toggle Task Complete
+     * Update Task Completed Date
      */
-    async toggleTaskCompleteRaw(requestParameters: ToggleTaskCompleteOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.toggleTaskCompleteRequest === null || requestParameters.toggleTaskCompleteRequest === undefined) {
-            throw new runtime.RequiredError('toggleTaskCompleteRequest','Required parameter requestParameters.toggleTaskCompleteRequest was null or undefined when calling toggleTaskComplete.');
+    async updateTaskCompletedDateRaw(requestParameters: UpdateTaskCompletedDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.updateTaskCompletedDateRequest === null || requestParameters.updateTaskCompletedDateRequest === undefined) {
+            throw new runtime.RequiredError('updateTaskCompletedDateRequest','Required parameter requestParameters.updateTaskCompletedDateRequest was null or undefined when calling updateTaskCompletedDate.');
         }
 
         const queryParameters: any = {};
@@ -163,21 +163,21 @@ export class TasksApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
-            path: `/tasks/complete`,
+            path: `/tasks/update/completed_date`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ToggleTaskCompleteRequestToJSON(requestParameters.toggleTaskCompleteRequest),
+            body: UpdateTaskCompletedDateRequestToJSON(requestParameters.updateTaskCompletedDateRequest),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
 
     /**
-     * Toggle Task Complete
+     * Update Task Completed Date
      */
-    async toggleTaskComplete(requestParameters: ToggleTaskCompleteOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.toggleTaskCompleteRaw(requestParameters, initOverrides);
+    async updateTaskCompletedDate(requestParameters: UpdateTaskCompletedDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateTaskCompletedDateRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -77,8 +77,8 @@ export default function Home() {
         <TaskList
           onToggleComplete={async (task) => {
             await Haptics.impact({ style: ImpactStyle.Medium });
-            await TasksService.toggleTaskComplete({
-              toggleTaskCompleteRequest: {
+            await TasksService.updateTaskCompletedDate({
+              updateTaskCompletedDateRequest: {
                 taskId: task.id,
                 completedDate: task.completedDate ? null : new Date(),
               },

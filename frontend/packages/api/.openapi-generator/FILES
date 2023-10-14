@@ -6,7 +6,7 @@ models/DeleteTaskRequest.ts
 models/GetTasksResponse.ts
 models/HTTPValidationError.ts
 models/TaskModel.ts
-models/ToggleTaskCompleteRequest.ts
+models/UpdateTaskCompletedDateRequest.ts
 models/UpdateTaskNameRequest.ts
 models/ValidationError.ts
 models/ValidationErrorLocInner.ts

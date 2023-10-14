@@ -16,27 +16,27 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ToggleTaskCompleteRequest
+ * @interface UpdateTaskCompletedDateRequest
  */
-export interface ToggleTaskCompleteRequest {
+export interface UpdateTaskCompletedDateRequest {
     /**
      * 
      * @type {string}
-     * @memberof ToggleTaskCompleteRequest
+     * @memberof UpdateTaskCompletedDateRequest
      */
     taskId: string;
     /**
      * 
      * @type {Date}
-     * @memberof ToggleTaskCompleteRequest
+     * @memberof UpdateTaskCompletedDateRequest
      */
     completedDate: Date | null;
 }
 
 /**
- * Check if a given object implements the ToggleTaskCompleteRequest interface.
+ * Check if a given object implements the UpdateTaskCompletedDateRequest interface.
  */
-export function instanceOfToggleTaskCompleteRequest(value: object): boolean {
+export function instanceOfUpdateTaskCompletedDateRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "taskId" in value;
     isInstance = isInstance && "completedDate" in value;
@@ -44,11 +44,11 @@ export function instanceOfToggleTaskCompleteRequest(value: object): boolean {
     return isInstance;
 }
 
-export function ToggleTaskCompleteRequestFromJSON(json: any): ToggleTaskCompleteRequest {
-    return ToggleTaskCompleteRequestFromJSONTyped(json, false);
+export function UpdateTaskCompletedDateRequestFromJSON(json: any): UpdateTaskCompletedDateRequest {
+    return UpdateTaskCompletedDateRequestFromJSONTyped(json, false);
 }
 
-export function ToggleTaskCompleteRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ToggleTaskCompleteRequest {
+export function UpdateTaskCompletedDateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateTaskCompletedDateRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -59,7 +59,7 @@ export function ToggleTaskCompleteRequestFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function ToggleTaskCompleteRequestToJSON(value?: ToggleTaskCompleteRequest | null): any {
+export function UpdateTaskCompletedDateRequestToJSON(value?: UpdateTaskCompletedDateRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
