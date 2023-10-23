@@ -17,6 +17,7 @@ source .venv/bin/activate
 ### First Time Installation
 ```
 brew install openapi-generator
+brew install node
 ```
 
 ### Regular Installation
